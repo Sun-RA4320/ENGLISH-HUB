@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Hub — Business English Kit</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: 'Lato', sans-serif; background: #0a0a0a; color: #e8e0d0; overflow-x: hidden; }
+
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(8,6,4,0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(196,160,75,0.2);
+  padding: 0 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px;
+}
+.nav-logo { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700; color: #C4A04B; letter-spacing: 2px; cursor: pointer; }
+.nav-logo span { color: #e8e0d0; font-weight: 400; }
+.nav-links { display: flex; gap: 32px; }
+.nav-link {
+  font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: rgba(232,224,208,0.6); cursor: pointer; transition: color 0.2s;
+  font-weight: 700; padding: 4px 0;
+  border-bottom: 1px solid transparent;
+}
+.nav-link:hover, .nav-link.active { color: #C4A04B; border-bottom-color: #C4A04B; }
+.nav-cta {
+  background: #C4A04B; color: #0a0a0a;
+  padding: 9px 22px; border-radius: 2px;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  cursor: pointer; transition: all 0.2s; border: none;
+}
+.nav-cta:hover { background: #d4b060; }
+
+/* ═══════════════════════════════════════════
+   PAGE SYSTEM
+═══════════════════════════════════════════ */
+.page { display: none; min-height: 100vh; padding-top: 64px; }
+.page.active { display: block; }
+
+/* ═══════════════════════════════════════════
+   ── PAGE: LANDING ──
+═══════════════════════════════════════════ */
+/* HERO */
+.hero {
+  min-height: calc(100vh - 64px);
+  background: #080604;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 80px 24px 60px;
+}
+.hero-pattern {
+  position: absolute; inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(196,160,75,0.03) 60px, rgba(196,160,75,0.03) 61px),
+    repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(196,160,75,0.03) 60px, rgba(196,160,75,0.03) 61px);
+}
+.hero-glow {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(196,160,75,0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-badge {
+  display: inline-block;
+  border: 1px solid rgba(196,160,75,0.4);
+  padding: 6px 20px; border-radius: 30px;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  color: #C4A04B; margin-bottom: 36px;
+  font-weight: 700;
+  position: relative;
+}
+.hero-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(42px, 7vw, 86px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 3px;
+  color: #e8e0d0;
+  margin-bottom: 8px;
+  position: relative;
+}
+.hero-title-accent {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(28px, 4vw, 52px);
+  font-weight: 400;
+  font-style: italic;
+  color: #C4A04B;
+  letter-spacing: 6px;
+  margin-bottom: 32px;
+  display: block;
+  position: relative;
+}
+.hero-divider {
+  width: 120px; height: 1px;
+  background: linear-gradient(90deg, transparent, #C4A04B, transparent);
+  margin: 0 auto 32px;
+}
+.hero-sub {
+  font-size: 16px; line-height: 1.8;
+  color: rgba(232,224,208,0.65);
+  max-width: 540px;
+  font-weight: 300;
+  margin-bottom: 52px;
+  position: relative;
+}
+.hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; position: relative; }
+.btn-primary {
+  background: #C4A04B; color: #0a0a0a;
+  padding: 16px 40px; border: none; border-radius: 2px;
+  font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  cursor: pointer; transition: all 0.25s;
+}
+.btn-primary:hover { background: #d4b060; transform: translateY(-2px); box-shadow: 0 12px 32px rgba(196,160,75,0.3); }
+.btn-outline {
+  background: transparent; color: #e8e0d0;
+  padding: 16px 40px; border: 1px solid rgba(232,224,208,0.3); border-radius: 2px;
+  font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  cursor: pointer; transition: all 0.25s;
+}
+.btn-outline:hover { border-color: #C4A04B; color: #C4A04B; }
+
+/* LEVELS SECTION */
+.section-landing {
+  padding: 100px 48px;
+  max-width: 1200px; margin: 0 auto;
+}
+.section-label {
+  font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+  color: #C4A04B; font-weight: 700; margin-bottom: 16px; text-align: center;
+}
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 600; text-align: center;
+  color: #e8e0d0; margin-bottom: 16px;
+}
+.section-sub {
+  text-align: center; color: rgba(232,224,208,0.55);
+  font-size: 15px; max-width: 520px; margin: 0 auto 64px;
+  line-height: 1.7; font-weight: 300;
+}
+
+.levels-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+.level-block {
+  padding: 48px 36px;
+  position: relative; overflow: hidden; cursor: pointer;
+  transition: transform 0.3s;
+}
+.level-block:hover { transform: translateY(-4px); }
+.level-block.ab { background: linear-gradient(145deg, #2a1f0e, #1a1306); border: 1px solid rgba(196,160,75,0.25); }
+.level-block.c  { background: linear-gradient(145deg, #0d1a2e, #07111f); border: 1px solid rgba(74,120,180,0.25); }
+.level-block.d  { background: linear-gradient(145deg, #1a1306, #0d0900); border: 1px solid rgba(196,160,75,0.4); }
+.level-tag {
+  font-family: 'Cinzel', serif;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  margin-bottom: 20px; font-weight: 600;
+}
+.level-block.ab .level-tag { color: #C4A04B; }
+.level-block.c  .level-tag { color: #7aabdf; }
+.level-block.d  .level-tag { color: #FFD700; }
+.level-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 32px; font-weight: 600;
+  color: #e8e0d0; margin-bottom: 12px;
+}
+.level-desc { font-size: 14px; color: rgba(232,224,208,0.55); line-height: 1.7; font-weight: 300; margin-bottom: 28px; }
+.level-btn {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+  padding: 10px 22px; border-radius: 2px; border: none; cursor: pointer; transition: all 0.2s;
+}
+.level-block.ab .level-btn { background: rgba(196,160,75,0.15); color: #C4A04B; border: 1px solid rgba(196,160,75,0.3); }
+.level-block.c  .level-btn { background: rgba(74,120,180,0.15); color: #7aabdf; border: 1px solid rgba(74,120,180,0.3); }
+.level-block.d  .level-btn { background: rgba(255,215,0,0.1); color: #FFD700; border: 1px solid rgba(255,215,0,0.3); }
+
+/* FEATURES */
+.features-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 80px; }
+.feat {
+  text-align: center; padding: 36px 24px;
+  border: 1px solid rgba(196,160,75,0.12);
+  background: rgba(196,160,75,0.02);
+}
+.feat-icon { font-size: 36px; margin-bottom: 20px; }
+.feat-title { font-family: 'Cinzel', serif; font-size: 15px; font-weight: 600; color: #C4A04B; margin-bottom: 10px; letter-spacing: 1px; }
+.feat-desc { font-size: 13px; color: rgba(232,224,208,0.5); line-height: 1.7; font-weight: 300; }
+
+/* TESTIMONIALS */
+.testimonials { background: #060402; padding: 100px 48px; }
+.testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1100px; margin: 48px auto 0; }
+.testi {
+  padding: 32px;
+  border: 1px solid rgba(196,160,75,0.12);
+  background: rgba(196,160,75,0.02);
+}
+.testi-quote { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; line-height: 1.7; color: rgba(232,224,208,0.8); margin-bottom: 20px; }
+.testi-author { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #C4A04B; font-weight: 700; }
+.testi-role { font-size: 12px; color: rgba(232,224,208,0.4); margin-top: 4px; }
+
+/* CTA BAND */
+.cta-band {
+  background: linear-gradient(135deg, #1a1306, #0d0900);
+  border-top: 1px solid rgba(196,160,75,0.2);
+  border-bottom: 1px solid rgba(196,160,75,0.2);
+  padding: 80px 48px; text-align: center;
+}
+.cta-band h2 { font-family: 'Cinzel', serif; font-size: 36px; font-weight: 600; color: #e8e0d0; margin-bottom: 16px; }
+.cta-band p { color: rgba(232,224,208,0.55); font-size: 15px; margin-bottom: 36px; font-weight: 300; }
+
+/* FOOTER */
+footer {
+  background: #040302; padding: 40px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid rgba(196,160,75,0.1);
+}
+.footer-logo { font-family: 'Cinzel', serif; font-size: 16px; color: #C4A04B; letter-spacing: 2px; }
+.footer-copy { font-size: 12px; color: rgba(232,224,208,0.3); }
+
+/* ═══════════════════════════════════════════
+   ── PAGE: FLASHCARDS (shared layout) ──
+═══════════════════════════════════════════ */
+.flashcard-page { padding: 80px 48px; max-width: 1100px; margin: 0 auto; }
+.flashcard-page h1 {
+  font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 4px;
+  text-transform: uppercase; color: #C4A04B; margin-bottom: 8px;
+}
+.flashcard-page h2 {
+  font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 600;
+  color: #e8e0d0; margin-bottom: 8px;
+}
+.flashcard-page .page-sub { color: rgba(232,224,208,0.45); font-size: 14px; font-weight: 300; margin-bottom: 60px; }
+
+/* CARD ROW: face A + face B side by side */
+.card-row { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-bottom: 48px; }
+
+/* ── LEVEL D: AFRO-ROYAL ── */
+.card-d-front {
+  aspect-ratio: 3/2;
+  background: linear-gradient(145deg, #100c03, #1e1608);
+  border: 1px solid #C4A04B;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.card-d-corner {
+  position: absolute;
+  width: 60px; height: 60px;
+  opacity: 0.35;
+  background-image:
+    repeating-linear-gradient(0deg, #C4A04B 0px, #C4A04B 1px, transparent 1px, transparent 8px),
+    repeating-linear-gradient(90deg, #C4A04B 0px, #C4A04B 1px, transparent 1px, transparent 8px);
+}
+.card-d-corner.tl { top: 0; left: 0; }
+.card-d-corner.tr { top: 0; right: 0; }
+.card-d-corner.bl { bottom: 0; left: 0; }
+.card-d-corner.br { bottom: 0; right: 0; }
+.card-d-logo {
+  text-align: center; position: relative; z-index: 2;
+}
+.card-d-logo .bg-letter {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Cinzel', serif; font-size: 120px; font-weight: 700;
+  color: rgba(196,160,75,0.08); line-height: 1; pointer-events: none;
+}
+.card-d-logo-text { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; letter-spacing: 4px; color: #C4A04B; position: relative; z-index: 3; }
+.card-d-logo-sub { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: #d4b060; position: relative; z-index: 3; }
+
+.card-d-back {
+  aspect-ratio: 3/2;
+  background: linear-gradient(145deg, #100c03, #1a1408);
+  border: 1px solid rgba(196,160,75,0.5);
+  border-radius: 8px;
+  padding: 24px 28px;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.card-d-back .bg-letter {
+  position: absolute; top: 50%; right: -10px; transform: translateY(-50%);
+  font-family: 'Cinzel', serif; font-size: 140px; font-weight: 700;
+  color: rgba(196,160,75,0.05); line-height: 1; pointer-events: none;
+}
+.card-word-en { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; color: #C4A04B; margin-bottom: 3px; }
+.card-phonetic { font-size: 11px; color: #e05050; letter-spacing: 1px; font-weight: 400; text-transform: lowercase; margin-bottom: 6px; font-family: 'Lato', sans-serif; }
+.card-underline { width: 60px; height: 1px; background: rgba(196,160,75,0.4); margin-bottom: 10px; }
+.card-word-fr { font-family: 'Cormorant Garamond', serif; font-size: 17px; font-style: italic; font-weight: 600; color: #e8e0d0; margin-bottom: 6px; }
+.card-def { font-size: 12px; color: rgba(232,224,208,0.65); line-height: 1.5; font-weight: 300; margin-bottom: 10px; font-family: 'Lato', sans-serif; }
+.card-ex-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(196,160,75,0.6); font-weight: 700; margin-bottom: 5px; }
+.card-ex-en { font-family: 'EB Garamond', serif; font-size: 12px; font-style: italic; color: rgba(232,224,208,0.8); margin-bottom: 3px; }
+.card-ex-en span { text-decoration: underline; color: #C4A04B; }
+.card-ex-fr { font-family: 'EB Garamond', serif; font-size: 12px; font-style: italic; color: rgba(232,224,208,0.55); }
+.card-ex-fr span { text-decoration: underline; color: rgba(196,160,75,0.7); }
+.card-qr {
+  position: absolute; bottom: 16px; right: 16px;
+  width: 36px; height: 36px;
+  display: grid; grid-template-columns: repeat(5,1fr); gap: 2px;
+}
+.qr-cell { background: #C4A04B; border-radius: 1px; }
+.qr-cell.e { background: transparent; }
+.card-illus {
+  position: absolute; bottom: 12px; right: 56px;
+  opacity: 0.12; font-size: 48px; pointer-events: none;
+}
+
+/* ── LEVEL C: PROFESSIONAL ── */
+.card-c-front {
+  aspect-ratio: 3/2;
+  background: linear-gradient(145deg, #0b1829, #0d1f35);
+  border: 1px solid rgba(100,160,220,0.4);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.card-c-texture {
+  position: absolute; inset: 0;
+  background: repeating-linear-gradient(45deg, transparent, transparent 20px, rgba(100,160,220,0.02) 20px, rgba(100,160,220,0.02) 21px);
+}
+.card-c-corner {
+  position: absolute;
+  width: 56px; height: 56px;
+  opacity: 0.25;
+  background-image:
+    repeating-linear-gradient(0deg, #7aabdf 0, #7aabdf 1px, transparent 1px, transparent 8px),
+    repeating-linear-gradient(90deg, #7aabdf 0, #7aabdf 1px, transparent 1px, transparent 8px);
+}
+.card-c-corner.tl { top: 0; left: 0; }
+.card-c-corner.tr { top: 0; right: 0; }
+.card-c-corner.bl { bottom: 0; left: 0; }
+.card-c-corner.br { bottom: 0; right: 0; }
+.card-c-logo { text-align: center; position: relative; z-index: 2; }
+.card-c-logo-text { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; letter-spacing: 4px; color: #e8e0d0; }
+.card-c-logo-sub { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: #7aabdf; }
+
+.card-c-back {
+  aspect-ratio: 3/2;
+  background: #f5f7fa;
+  border: 1px solid #d0dae8;
+  border-radius: 8px;
+  padding: 20px 24px;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.card-c-header {
+  background: #1c3557;
+  padding: 10px 16px;
+  margin: -20px -24px 14px;
+  display: flex; align-items: center; gap: 10px;
+  clip-path: polygon(0 0, 85% 0, 100% 100%, 0 100%);
+  padding-right: 60px;
+}
+.card-c-header-word { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+.card-c-header-phon { font-size: 10px; color: #e05050; margin-top: 2px; font-family: 'Lato', sans-serif; }
+.card-c-body .card-word-fr { color: #1c3557; }
+.card-c-body .card-def { color: #555; }
+.card-c-body .card-ex-en { color: #333; }
+.card-c-body .card-ex-en span { color: #1c3557; }
+.card-c-body .card-ex-fr { color: #666; }
+.card-c-illus { position: absolute; bottom: 14px; right: 56px; opacity: 0.08; font-size: 52px; pointer-events: none; color: #1c3557; }
+.card-c-qr { position: absolute; bottom: 14px; right: 16px; width: 34px; height: 34px; display: grid; grid-template-columns: repeat(5,1fr); gap: 2px; }
+.card-c-qr .qr-cell { background: #1c3557; }
+.card-c-qr .qr-cell.e { background: transparent; }
+
+/* ── LEVEL AB: STANDARD ── */
+.card-ab-front {
+  aspect-ratio: 3/2;
+  background: linear-gradient(145deg, #2a1800, #1a0f00);
+  border: 1px solid rgba(196,120,30,0.5);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.card-ab-bg {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(196,120,30,0.08) 0%, transparent 70%);
+}
+.card-ab-corner {
+  position: absolute;
+  width: 56px; height: 56px; opacity: 0.4;
+  background-image:
+    repeating-linear-gradient(0deg, #c47820 0, #c47820 1px, transparent 1px, transparent 7px),
+    repeating-linear-gradient(90deg, #c47820 0, #c47820 1px, transparent 1px, transparent 7px);
+}
+.card-ab-corner.tl { top: 0; left: 0; }
+.card-ab-corner.tr { top: 0; right: 0; }
+.card-ab-corner.bl { bottom: 0; left: 0; }
+.card-ab-corner.br { bottom: 0; right: 0; }
+.card-ab-logo { text-align: center; position: relative; z-index: 2; }
+.card-ab-logo-text { font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; letter-spacing: 4px; color: #e8c87a; }
+.card-ab-logo-sub { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-style: italic; color: #d4984a; }
+
+.card-ab-back {
+  aspect-ratio: 3/2;
+  background: linear-gradient(145deg, #f5ead8, #ede0c4);
+  border: 1px solid rgba(196,120,30,0.4);
+  border-radius: 8px;
+  padding: 20px 24px;
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column; justify-content: space-between;
+}
+.card-ab-corner2 {
+  position: absolute;
+  width: 48px; height: 48px; opacity: 0.35;
+  background-image:
+    repeating-linear-gradient(0deg, #7a4010 0, #7a4010 1px, transparent 1px, transparent 7px),
+    repeating-linear-gradient(90deg, #7a4010 0, #7a4010 1px, transparent 1px, transparent 7px);
+}
+.card-ab-corner2.tl { top: 0; left: 0; }
+.card-ab-corner2.tr { top: 0; right: 0; }
+.card-ab-corner2.bl { bottom: 0; left: 0; }
+.card-ab-corner2.br { bottom: 0; right: 0; }
+.card-ab-back .card-word-en { color: #3a2000; font-family: 'Cinzel', serif; }
+.card-ab-back .card-phonetic { color: #c03030; }
+.card-ab-back .card-word-fr { color: #3a2000; }
+.card-ab-back .card-def { color: #5a4020; }
+.card-ab-back .card-ex-en { color: #3a2000; }
+.card-ab-back .card-ex-en span { color: #7a4010; }
+.card-ab-back .card-ex-fr { color: #6a5030; }
+.card-ab-back .card-underline { background: rgba(122,64,16,0.3); }
+.card-ab-illus { position: absolute; bottom: 12px; right: 56px; opacity: 0.1; font-size: 52px; pointer-events: none; color: #7a4010; }
+.card-ab-qr .qr-cell { background: #7a4010; }
+.card-ab-qr .qr-cell.e { background: transparent; }
+.card-ab-qr { position: absolute; bottom: 14px; right: 16px; width: 34px; height: 34px; display: grid; grid-template-columns: repeat(5,1fr); gap: 2px; }
+.card-ab-ball { position: absolute; top: 14px; right: 18px; width: 48px; height: 48px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, rgba(196,120,30,0.2), rgba(196,120,30,0.05)); border: 1px solid rgba(196,120,30,0.2); }
+
+/* USAGE SECTION below each card row */
+.usage-section {
+  background: rgba(196,160,75,0.03);
+  border: 1px solid rgba(196,160,75,0.12);
+  border-radius: 4px;
+  padding: 32px 36px;
+  margin-bottom: 48px;
+}
+.usage-title {
+  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 3px;
+  text-transform: uppercase; color: #C4A04B; margin-bottom: 20px; font-weight: 600;
+}
+.usage-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 24px; }
+.usage-item h4 { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(232,224,208,0.5); margin-bottom: 8px; font-weight: 700; }
+.usage-item p { font-size: 14px; color: rgba(232,224,208,0.8); line-height: 1.6; font-weight: 300; }
+.usage-item p em { font-family: 'EB Garamond', serif; font-style: italic; color: #C4A04B; }
+.challenge-box {
+  border-top: 1px solid rgba(196,160,75,0.12);
+  padding-top: 20px; margin-top: 4px;
+}
+.challenge-label {
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #e05050;
+  font-weight: 700; margin-bottom: 12px;
+}
+.challenge-text { font-size: 14px; color: rgba(232,224,208,0.7); line-height: 1.7; font-weight: 300; }
+.challenge-text strong { color: #e8e0d0; font-weight: 700; }
+
+/* ═══════════════════════════════════════════
+   ── PAGE: PARTS OF SPEECH ──
+═══════════════════════════════════════════ */
+.pos-page { max-width: 1100px; margin: 0 auto; padding: 80px 48px; }
+.pos-header { margin-bottom: 60px; }
+.pos-header h1 { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: #C4A04B; margin-bottom: 8px; }
+.pos-header h2 { font-family: 'Cormorant Garamond', serif; font-size: 48px; font-weight: 600; color: #e8e0d0; line-height: 1.1; margin-bottom: 12px; }
+.pos-header p { font-size: 14px; color: rgba(232,224,208,0.45); font-weight: 300; max-width: 560px; line-height: 1.7; }
+
+.pos-intro {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  margin-bottom: 64px; align-items: start;
+}
+.pos-intro-text h3 { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: #C4A04B; margin-bottom: 16px; }
+.pos-intro-text p { font-size: 15px; color: rgba(232,224,208,0.7); line-height: 1.8; font-weight: 300; margin-bottom: 14px; }
+.pos-sentence-demo {
+  background: rgba(196,160,75,0.04);
+  border: 1px solid rgba(196,160,75,0.2);
+  border-radius: 4px; padding: 28px;
+}
+.pos-sentence-demo h4 { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(196,160,75,0.6); margin-bottom: 16px; font-weight: 700; }
+.sentence-line { font-family: 'Cormorant Garamond', serif; font-size: 22px; color: #e8e0d0; margin-bottom: 16px; line-height: 1.4; }
+.sentence-line .noun { color: #7aabdf; border-bottom: 2px solid #7aabdf; padding-bottom: 1px; }
+.sentence-line .verb { color: #C4A04B; border-bottom: 2px solid #C4A04B; padding-bottom: 1px; }
+.sentence-line .adj { color: #90c878; border-bottom: 2px solid #90c878; padding-bottom: 1px; }
+.sentence-line .prep { color: #e0a050; border-bottom: 2px solid #e0a050; padding-bottom: 1px; }
+.sentence-legend { display: flex; gap: 16px; flex-wrap: wrap; }
+.legend-item { font-size: 11px; display: flex; align-items: center; gap: 6px; color: rgba(232,224,208,0.55); font-weight: 700; letter-spacing: 1px; }
+.dot { width: 8px; height: 8px; border-radius: 50%; }
+
+.pos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-bottom: 48px; }
+.pos-card {
+  background: rgba(196,160,75,0.02);
+  border: 1px solid rgba(196,160,75,0.1);
+  padding: 28px 24px;
+  transition: all 0.2s;
+}
+.pos-card:hover { background: rgba(196,160,75,0.06); border-color: rgba(196,160,75,0.25); }
+.pos-card-num { font-family: 'Cinzel', serif; font-size: 11px; color: rgba(196,160,75,0.4); margin-bottom: 10px; letter-spacing: 1px; }
+.pos-card-name { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700; color: #C4A04B; margin-bottom: 4px; letter-spacing: 1px; }
+.pos-card-fr { font-family: 'Cormorant Garamond', serif; font-size: 15px; font-style: italic; color: rgba(232,224,208,0.6); margin-bottom: 12px; }
+.pos-card-def { font-size: 13px; color: rgba(232,224,208,0.6); line-height: 1.6; font-weight: 300; margin-bottom: 12px; }
+.pos-card-ex {
+  background: rgba(196,160,75,0.05);
+  border-left: 2px solid #C4A04B;
+  padding: 8px 12px;
+  font-family: 'EB Garamond', serif;
+  font-style: italic; font-size: 13px;
+  color: rgba(232,224,208,0.75); line-height: 1.5;
+}
+.pos-card-ex .highlight { color: #C4A04B; font-style: normal; font-weight: 600; }
+
+.pos-rule {
+  background: linear-gradient(135deg, rgba(196,160,75,0.05), rgba(196,160,75,0.02));
+  border: 1px solid rgba(196,160,75,0.2);
+  border-radius: 4px; padding: 36px;
+  margin-bottom: 32px;
+}
+.pos-rule h3 { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #C4A04B; margin-bottom: 20px; }
+.rule-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.rule-item { }
+.rule-item h4 { font-size: 12px; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(232,224,208,0.5); margin-bottom: 8px; font-weight: 700; }
+.rule-item p { font-size: 13px; color: rgba(232,224,208,0.7); line-height: 1.6; font-weight: 300; }
+.rule-item p em { font-family: 'EB Garamond', serif; font-style: italic; color: #C4A04B; }
+
+.pos-challenge {
+  background: rgba(224,80,80,0.04);
+  border: 1px solid rgba(224,80,80,0.2);
+  border-radius: 4px; padding: 36px;
+}
+.pos-challenge h3 { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #e05050; font-weight: 700; margin-bottom: 20px; }
+.challenge-level { margin-bottom: 24px; }
+.challenge-level h4 { font-family: 'Cinzel', serif; font-size: 14px; color: #e8e0d0; margin-bottom: 10px; font-weight: 600; }
+.challenge-level ol { padding-left: 20px; }
+.challenge-level ol li { font-size: 14px; color: rgba(232,224,208,0.7); line-height: 1.8; font-weight: 300; margin-bottom: 6px; }
+.challenge-level ol li em { font-family: 'EB Garamond', serif; font-style: italic; color: rgba(196,160,75,0.8); }
+
+/* ═══════════════════════════════════════════
+   ── PAGE: SHOP ──
+═══════════════════════════════════════════ */
+.shop-hero {
+  background: linear-gradient(180deg, #100c03 0%, #080604 100%);
+  padding: 80px 48px 60px;
+  text-align: center;
+  border-bottom: 1px solid rgba(196,160,75,0.15);
+}
+.shop-hero h1 { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 4px; text-transform: uppercase; color: #C4A04B; margin-bottom: 12px; }
+.shop-hero h2 { font-family: 'Cormorant Garamond', serif; font-size: 52px; font-weight: 600; color: #e8e0d0; margin-bottom: 12px; }
+.shop-hero p { color: rgba(232,224,208,0.45); font-size: 15px; font-weight: 300; }
+
+.shop-main { max-width: 1100px; margin: 0 auto; padding: 64px 48px; }
+.shop-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 64px; }
+.product-card {
+  border: 1px solid rgba(196,160,75,0.15);
+  background: rgba(196,160,75,0.02);
+  transition: all 0.25s; cursor: pointer;
+}
+.product-card:hover { border-color: rgba(196,160,75,0.4); transform: translateY(-4px); }
+.product-card.featured { border-color: rgba(196,160,75,0.4); background: rgba(196,160,75,0.04); }
+.product-img {
+  aspect-ratio: 3/2;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Cinzel', serif; font-size: 22px; font-weight: 700; letter-spacing: 3px;
+  position: relative; overflow: hidden;
+}
+.product-img.d-bg { background: linear-gradient(145deg, #100c03, #1e1608); color: #C4A04B; border-bottom: 1px solid rgba(196,160,75,0.2); }
+.product-img.c-bg { background: linear-gradient(145deg, #0b1829, #0d1f35); color: #7aabdf; border-bottom: 1px solid rgba(100,160,220,0.2); }
+.product-img.ab-bg { background: linear-gradient(145deg, #2a1800, #1a0f00); color: #e8c87a; border-bottom: 1px solid rgba(196,120,30,0.2); }
+.product-img.full-bg { background: linear-gradient(145deg, #1a1306, #100c03); color: #C4A04B; border-bottom: 1px solid rgba(196,160,75,0.2); }
+.product-img.kit-bg { background: linear-gradient(145deg, #0d0900, #1e1608); color: #FFD700; border-bottom: 1px solid rgba(255,215,0,0.2); }
+.product-img-text { position: relative; z-index: 2; text-align: center; }
+.product-img-text .big { font-size: 28px; display: block; margin-bottom: 4px; }
+.product-img-text .small { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 16px; opacity: 0.7; }
+.product-img-tag {
+  position: absolute; top: 14px; right: 14px;
+  background: #C4A04B; color: #0a0a0a;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 4px 10px; border-radius: 2px;
+}
+.product-body { padding: 24px; }
+.product-level { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: #C4A04B; font-weight: 700; margin-bottom: 8px; }
+.product-name { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600; color: #e8e0d0; margin-bottom: 6px; }
+.product-desc { font-size: 13px; color: rgba(232,224,208,0.5); line-height: 1.6; font-weight: 300; margin-bottom: 18px; }
+.product-includes { margin-bottom: 18px; }
+.product-includes span { display: inline-block; font-size: 11px; background: rgba(196,160,75,0.08); border: 1px solid rgba(196,160,75,0.15); padding: 3px 10px; border-radius: 2px; color: rgba(232,224,208,0.6); margin: 0 4px 4px 0; letter-spacing: 0.5px; }
+.product-price { font-family: 'Cinzel', serif; font-size: 26px; font-weight: 700; color: #C4A04B; margin-bottom: 4px; }
+.product-price-sub { font-size: 12px; color: rgba(232,224,208,0.35); margin-bottom: 18px; }
+.product-old-price { text-decoration: line-through; color: rgba(232,224,208,0.3); font-size: 14px; margin-right: 8px; font-family: 'Cinzel', serif; }
+.add-btn {
+  width: 100%; padding: 13px;
+  background: #C4A04B; color: #0a0a0a;
+  border: none; border-radius: 2px;
+  font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  cursor: pointer; transition: all 0.2s;
+}
+.add-btn:hover { background: #d4b060; }
+.add-btn.outline {
+  background: transparent; color: #C4A04B;
+  border: 1px solid rgba(196,160,75,0.4);
+}
+.add-btn.outline:hover { background: rgba(196,160,75,0.1); }
+
+/* ORDER FORM */
+.order-section { display: grid; grid-template-columns: 1fr 380px; gap: 40px; align-items: start; }
+.order-form-wrap { border: 1px solid rgba(196,160,75,0.2); padding: 40px; }
+.order-form-wrap h3 { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 600; color: #e8e0d0; margin-bottom: 28px; letter-spacing: 1px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-group { margin-bottom: 16px; }
+.form-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(232,224,208,0.45); font-weight: 700; margin-bottom: 8px; display: block; }
+.form-input {
+  width: 100%; background: rgba(196,160,75,0.04);
+  border: 1px solid rgba(196,160,75,0.15); border-radius: 2px;
+  padding: 12px 16px; color: #e8e0d0; font-size: 14px; font-family: 'Lato', sans-serif;
+  outline: none; transition: border-color 0.2s;
+}
+.form-input:focus { border-color: rgba(196,160,75,0.5); }
+.form-input::placeholder { color: rgba(232,224,208,0.25); }
+.form-select {
+  width: 100%; background: rgba(196,160,75,0.04);
+  border: 1px solid rgba(196,160,75,0.15); border-radius: 2px;
+  padding: 12px 16px; color: #e8e0d0; font-size: 14px; font-family: 'Lato', sans-serif;
+  outline: none; appearance: none; cursor: pointer;
+}
+.form-select option { background: #0a0a0a; }
+.submit-btn {
+  width: 100%; padding: 16px;
+  background: #C4A04B; color: #0a0a0a;
+  border: none; border-radius: 2px;
+  font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  cursor: pointer; transition: all 0.2s; margin-top: 8px;
+}
+.submit-btn:hover { background: #d4b060; }
+
+.order-summary { border: 1px solid rgba(196,160,75,0.2); padding: 32px; background: rgba(196,160,75,0.02); }
+.order-summary h3 { font-family: 'Cinzel', serif; font-size: 15px; color: #e8e0d0; margin-bottom: 24px; letter-spacing: 1px; }
+.summary-item { display: flex; justify-content: space-between; align-items: flex-start; padding: 12px 0; border-bottom: 1px solid rgba(196,160,75,0.08); }
+.summary-item:last-of-type { border-bottom: none; }
+.summary-item-name { font-size: 13px; color: rgba(232,224,208,0.7); font-weight: 300; }
+.summary-item-price { font-family: 'Cinzel', serif; font-size: 14px; color: #C4A04B; font-weight: 600; }
+.summary-total { display: flex; justify-content: space-between; padding: 16px 0 0; border-top: 1px solid rgba(196,160,75,0.25); margin-top: 4px; }
+.summary-total-label { font-family: 'Cinzel', serif; font-size: 14px; color: #e8e0d0; letter-spacing: 1px; }
+.summary-total-price { font-family: 'Cinzel', serif; font-size: 22px; color: #C4A04B; font-weight: 700; }
+.summary-note { font-size: 12px; color: rgba(232,224,208,0.35); margin-top: 16px; line-height: 1.6; font-weight: 300; }
+.badge-secure { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: rgba(232,224,208,0.35); margin-top: 12px; letter-spacing: 1px; text-transform: uppercase; }
+
+/* ═══════════════════════════════════════════
+   QR SIMULATION HELPER
+═══════════════════════════════════════════ */
+/* generates a mock qr from 5x5 grid */
+
+/* ═══════════════════════════════════════════
+   TOAST
+═══════════════════════════════════════════ */
+.toast {
+  position: fixed; bottom: 32px; right: 32px; z-index: 200;
+  background: #1a1408; border: 1px solid rgba(196,160,75,0.4);
+  padding: 16px 24px; border-radius: 2px;
+  font-size: 14px; font-weight: 400;
+  display: flex; align-items: center; gap: 12px;
+  transform: translateY(80px); opacity: 0;
+  transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow: 0 20px 48px rgba(0,0,0,0.6);
+  max-width: 340px;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+
+@media (max-width: 900px) {
+  nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .section-landing, .flashcard-page, .pos-page, .shop-main { padding: 48px 20px; }
+  .levels-grid, .features-grid, .testi-grid, .pos-grid { grid-template-columns: 1fr; }
+  .card-row, .pos-intro, .order-section { grid-template-columns: 1fr; }
+  .shop-grid { grid-template-columns: 1fr; }
+  .rule-grid, .usage-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo" onclick="showPage('landing')">ENGLISH <span>HUB</span></div>
+  <div class="nav-links">
+    <div class="nav-link active" onclick="showPage('landing')">Accueil</div>
+    <div class="nav-link" onclick="showPage('pos')">Grammaire</div>
+    <div class="nav-link" onclick="showPage('level-d')">Afro-Royal</div>
+    <div class="nav-link" onclick="showPage('level-c')">Professional</div>
+    <div class="nav-link" onclick="showPage('level-ab')">Standard</div>
+    <div class="nav-link" onclick="showPage('shop')">Boutique</div>
+   <a style="text-decoration: none;" href="english-hub.html" class="nav-link" onclick="showPage('english-hub.html')">Tableau de bord</a>
+  </div>
+  <button class="nav-cta" onclick="showPage('shop')">Commander</button>
+</nav>
+
+<!-- ════════════════════════════════════════
+     PAGE: LANDING
+════════════════════════════════════════ -->
+<div class="page active" id="page-landing">
+  <div class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-badge">Par EduHub · Lomé, Togo</div>
+    <h1 class="hero-title">ENGLISH</h1>
+    <span class="hero-title-accent">Hub</span>
+    <div class="hero-divider"></div>
+    <p class="hero-sub">Le kit d'anglais business conçu pour les jeunes professionnels et entrepreneurs d'Afrique de l'Ouest. Pratique. Concret. Immédiatement utilisable.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showPage('shop')">Commander le Kit</button>
+      <button class="btn-outline" onclick="showPage('pos')">Explorer le contenu</button>
+    </div>
+  </div>
+
+  <!-- LEVELS -->
+  <div class="section-landing">
+    <div class="section-label">Trois niveaux. Une progression.</div>
+    <h2 class="section-title">Choisissez votre parcours</h2>
+    <p class="section-sub">Du vocabulaire essentiel jusqu'au langage des élites business — chaque niveau vous rapproche de vos ambitions.</p>
+    <div class="levels-grid">
+      <div class="level-block ab" onclick="showPage('level-ab')">
+        <div class="level-tag">Niveau A–B · Essentiel</div>
+        <div class="level-name">Standard</div>
+        <p class="level-desc">Les bases indispensables pour démarrer. Vocabulaire quotidien, structures de phrases, premières interactions professionnelles.</p>
+        <button class="level-btn" onclick="event.stopPropagation(); showPage('level-ab')">Explorer →</button>
+      </div>
+      <div class="level-block c" onclick="showPage('level-c')">
+        <div class="level-tag">Niveau C · Professionnel</div>
+        <div class="level-name">Professional</div>
+        <p class="level-desc">Emails, réunions, négociations. Le langage corporate qui ouvre les portes et crédibilise votre profil face aux partenaires anglophones.</p>
+        <button class="level-btn" onclick="event.stopPropagation(); showPage('level-c')">Explorer →</button>
+      </div>
+      <div class="level-block d" onclick="showPage('level-d')">
+        <div class="level-tag">Niveau D · Élite</div>
+        <div class="level-name">Afro-Royal</div>
+        <p class="level-desc">Le langage des leaders. Termes avancés, phrasés sophistiqués, stratégie discursive pour les négociations à haut niveau.</p>
+        <button class="level-btn" onclick="event.stopPropagation(); showPage('level-d')">Explorer →</button>
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feat">
+        <div class="feat-icon">🃏</div>
+        <div class="feat-title">Flashcards</div>
+        <p class="feat-desc">30 cartes physiques. Mémorisation rapide par répétition espacée. QR audio intégré.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">📖</div>
+        <div class="feat-title">Guide Illustré</div>
+        <p class="feat-desc">40 pages de scénarios business progressifs. Exemples, règles et défis à chaque page.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">📋</div>
+        <div class="feat-title">Livret de Poche</div>
+        <p class="feat-desc">20 pages. Phrases prêtes à l'emploi classées par situation. Référence rapide.</p>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">⚡</div>
+        <div class="feat-title">Plateforme Web</div>
+        <p class="feat-desc">Quiz, streaks, duels et communauté de pratique orale. Apprentissage gamifié.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="testimonials">
+    <div class="section-label">Ce qu'ils disent</div>
+    <h2 class="section-title" style="text-align:center;">Résultats réels</h2>
+    <div class="testi-grid">
+      <div class="testi">
+        <p class="testi-quote">"Avant English Hub, j'évitais les réunions en anglais. Maintenant je les conduis. Le niveau C a changé ma façon d'écrire mes emails à nos partenaires ghanéens."</p>
+        <div class="testi-author">Ama K.</div>
+        <div class="testi-role">Chargée de communication, Lomé</div>
+      </div>
+      <div class="testi">
+        <p class="testi-quote">"Les flashcards Afro-Royal m'ont donné le vocabulaire dont j'avais besoin pour négocier avec des importateurs européens. Investissement rentable en moins de deux semaines."</p>
+        <div class="testi-author">M. Mensah</div>
+        <div class="testi-role">Gérant de TPE, secteur logistique</div>
+      </div>
+      <div class="testi">
+        <p class="testi-quote">"Ce que j'aime c'est que les exemples parlent de notre réalité. Pas d'exemples sur des situations qui n'ont rien à voir avec le Togo ou l'Afrique."</p>
+        <div class="testi-author">Samuel D.</div>
+        <div class="testi-role">Étudiant en Commerce International</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-band">
+    <h2>Prêt à passer au niveau supérieur ?</h2>
+    <p>Commandez votre kit English Hub dès aujourd'hui. Livraison à Lomé et dans toute l'Afrique de l'Ouest.</p>
+    <button class="btn-primary" onclick="showPage('shop')">Commander maintenant</button>
+  </div>
+
+  <footer>
+    <div class="footer-logo">ENGLISH HUB</div>
+    <div class="footer-copy">© 2025 EduHub · Lomé, Togo · Tous droits réservés</div>
+  </footer>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: PARTS OF SPEECH
+════════════════════════════════════════ -->
+<div class="page" id="page-pos">
+  <div class="pos-page">
+    <div class="pos-header">
+      <h1>Grammaire Essentielle</h1>
+      <h2>Parts of Speech</h2>
+      <p>Comprendre les 8 catégories de mots en anglais — la base de toute construction de phrase. Cette page numérique approfondit ce que vous trouvez dans le Guide Illustré.</p>
+    </div>
+
+    <div class="pos-intro">
+      <div class="pos-intro-text">
+        <h3>Pourquoi c'est fondamental</h3>
+        <p>En anglais comme en français, chaque mot joue un rôle précis dans la phrase. Connaître ce rôle, c'est savoir <em style="font-family:'EB Garamond',serif;font-style:italic;color:#C4A04B">où placer</em> chaque mot — et éviter 80% des erreurs communes.</p>
+        <p>En contexte business, une confusion entre un <strong>verb</strong> et un <strong>noun</strong> peut changer complètement le sens d'un email ou d'une négociation.</p>
+        <p style="font-size:13px;color:rgba(232,224,208,0.4);font-style:italic;">→ Scanne le QR code de la page 4 du Guide Illustré pour accéder aux exercices audio complets.</p>
+      </div>
+      <div class="pos-sentence-demo">
+        <h4>Analyse d'une phrase business</h4>
+        <div class="sentence-line">"The <span class="adj">skilled</span> <span class="noun">manager</span> <span class="verb">presents</span> <span class="prep">to</span> the <span class="noun">client</span>."</div>
+        <div class="sentence-legend">
+          <div class="legend-item"><div class="dot" style="background:#7aabdf"></div>Noun</div>
+          <div class="legend-item"><div class="dot" style="background:#C4A04B"></div>Verb</div>
+          <div class="legend-item"><div class="dot" style="background:#90c878"></div>Adjective</div>
+          <div class="legend-item"><div class="dot" style="background:#e0a050"></div>Preposition</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 8 POS CARDS -->
+    <div class="pos-grid">
+      <div class="pos-card">
+        <div class="pos-card-num">01</div>
+        <div class="pos-card-name">Noun</div>
+        <div class="pos-card-fr">Nom</div>
+        <div class="pos-card-def">Désigne une personne, un lieu, une chose ou une idée.</div>
+        <div class="pos-card-ex">The <span class="highlight">client</span>, the <span class="highlight">meeting</span>, the <span class="highlight">proposal</span>.</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-card-num">02</div>
+        <div class="pos-card-name">Verb</div>
+        <div class="pos-card-fr">Verbe</div>
+        <div class="pos-card-def">Exprime une action, un état ou un processus.</div>
+        <div class="pos-card-ex">We <span class="highlight">negotiate</span> the terms. She <span class="highlight">leads</span> the team.</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-card-num">03</div>
+        <div class="pos-card-name">Adjective</div>
+        <div class="pos-card-fr">Adjectif</div>
+        <div class="pos-card-def">Qualifie ou décrit un nom.</div>
+        <div class="pos-card-ex">A <span class="highlight">strategic</span> decision. A <span class="highlight">reliable</span> partner.</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-card-num">04</div>
+        <div class="pos-card-name">Adverb</div>
+        <div class="pos-card-fr">Adverbe</div>
+        <div class="pos-card-def">Modifie un verbe, un adjectif ou un autre adverbe.</div>
+        <div class="pos-card-ex">She <span class="highlight">efficiently</span> managed the project.</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-card-num">05</div>
+        <div class="pos-card-name">Pronoun</div>
+        <div class="pos-card-fr">Pronom</div>
+        <div class="pos-card-def">Remplace un nom pour éviter la répétition.</div>
+        <div class="pos-card-ex"><span class="highlight">We</span> confirm. <span class="highlight">It</span> is approved. Contact <span class="highlight">us</span>.</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-card-num">06</div>
+        <div class="pos-card-name">Preposition</div>
+        <div class="pos-card-fr">Préposition</div>
+        <div class="pos-card-def">Indique une relation de lieu, temps ou logique.</div>
+        <div class="pos-card-ex">Meeting <span class="highlight">at</span> 9am, <span class="highlight">in</span> the boardroom, <span class="highlight">on</span> Monday.</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-card-num">07</div>
+        <div class="pos-card-name">Conjunction</div>
+        <div class="pos-card-fr">Conjonction</div>
+        <div class="pos-card-def">Relie des mots, groupes ou propositions.</div>
+        <div class="pos-card-ex">Quality <span class="highlight">and</span> speed. Profitable <span class="highlight">but</span> risky.</div>
+      </div>
+      <div class="pos-card">
+        <div class="pos-card-num">08</div>
+        <div class="pos-card-name">Article</div>
+        <div class="pos-card-fr">Article</div>
+        <div class="pos-card-def">Détermine si un nom est défini (the) ou indéfini (a/an).</div>
+        <div class="pos-card-ex"><span class="highlight">The</span> contract is ready. Send <span class="highlight">an</span> update.</div>
+      </div>
+    </div>
+
+    <!-- RULES -->
+    <div class="pos-rule">
+      <h3>Règles clés — Contexte Business</h3>
+      <div class="rule-grid">
+        <div class="rule-item">
+          <h4>Noun vs Verb (même mot !)</h4>
+          <p>En anglais, un même mot peut être noun ou verb selon sa position.<br><em>"Let's schedule a <strong>meeting</strong>."</em> (noun)<br><em>"Let's <strong>meet</strong> on Friday."</em> (verb)<br>→ Position dans la phrase = clé.</p>
+        </div>
+        <div class="rule-item">
+          <h4>Adjectif : AVANT le nom</h4>
+          <p>Contrairement au français, l'adjectif précède toujours le nom en anglais.<br><em>✓ "A <strong>detailed</strong> report"</em><br><em>✗ "A report detailed"</em><br>→ Erreur fréquente chez les francophones.</p>
+        </div>
+        <div class="rule-item">
+          <h4>Prepositions in/on/at</h4>
+          <p>Les trois plus importantes en business :<br><em><strong>at</strong> 3pm / at the meeting</em><br><em><strong>on</strong> Monday / on the agenda</em><br><em><strong>in</strong> March / in the office</em></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHALLENGE -->
+    <div class="pos-challenge">
+      <h3>🎯 Défis — Testez votre maîtrise</h3>
+      <div class="challenge-level">
+        <h4>Défi 1 — Identification (Niveau A-B)</h4>
+        <ol>
+          <li>Identifiez le <strong>noun</strong> et le <strong>verb</strong> dans cette phrase : <em>"The director approved the budget."</em></li>
+          <li>Mettez l'adjectif au bon endroit : <em>"a proposal / detailed"</em> → ?</li>
+          <li>Choisissez la bonne préposition : <em>"I'll call you ___ Monday morning."</em> (in / on / at)</li>
+        </ol>
+      </div>
+      <div class="challenge-level">
+        <h4>Défi 2 — Construction (Niveau C-D)</h4>
+        <ol>
+          <li>Construisez une phrase de 8+ mots utilisant au moins 5 parts of speech différents dans un contexte de négociation.</li>
+          <li>Reformulez : <em>"The meeting, we will have it tomorrow, it is important"</em> → phrase professionnelle correcte.</li>
+          <li>Identifiez les 3 erreurs grammaticales : <em>"Our partner reliable has send a proposal detail yesterday."</em></li>
+        </ol>
+      </div>
+      <p style="font-size:13px;color:rgba(232,224,208,0.35);margin-top:16px;font-style:italic;">→ Les corrections et plus d'exercices sont disponibles en scannant le QR code de la page 5 du Guide Illustré.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: LEVEL D — AFRO-ROYAL
+════════════════════════════════════════ -->
+<div class="page" id="page-level-d">
+  <div class="flashcard-page">
+    <h1>Niveau D · Élite</h1>
+    <h2>Afro-Royal</h2>
+    <p class="page-sub">Vocabulaire avancé pour leaders, négociateurs et cadres supérieurs · Dos & Face des flashcards + utilisations étendues</p>
+
+    <!-- WORD 1: LEVERAGE -->
+    <div class="card-row">
+      <div class="card-d-front">
+        <div class="card-d-corner tl"></div><div class="card-d-corner tr"></div>
+        <div class="card-d-corner bl"></div><div class="card-d-corner br"></div>
+        <div class="card-d-logo">
+          <div class="bg-letter">L</div>
+          <div class="card-d-logo-text">ENGLISH</div>
+          <div class="card-d-logo-sub">Hub</div>
+        </div>
+      </div>
+      <div class="card-d-back">
+        <div class="bg-letter">L</div>
+        <div>
+          <div class="card-word-en">Leverage</div>
+          <div class="card-phonetic">LEE-vuh-rij</div>
+          <div class="card-underline"></div>
+          <div class="card-word-fr">Exploiter / Tirer parti de</div>
+          <div class="card-def">Utiliser une ressource ou un avantage de manière stratégique pour obtenir un meilleur résultat.</div>
+          <div class="card-ex-label">Exemple</div>
+          <div class="card-ex-en">English : We should <span>leverage</span> our network to expand into new markets.</div>
+          <div class="card-ex-fr">Français : Nous devons <span>tirer parti</span> de notre réseau pour entrer sur de nouveaux marchés.</div>
+        </div>
+        <div class="card-illus">💰</div>
+        <div class="card-qr">
+          <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div>
+          <div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div>
+          <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+          <div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell e"></div><div class="qr-cell"></div>
+          <div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+        </div>
+      </div>
+    </div>
+    <div class="usage-section">
+      <div class="usage-title">Utilisations — Leverage (Niveau D)</div>
+      <div class="usage-grid">
+        <div class="usage-item">
+          <h4>Comme verbe</h4>
+          <p>We can <em>leverage</em> this partnership to accelerate our market entry.<br>She knows how to <em>leverage</em> data to drive decisions.</p>
+        </div>
+        <div class="usage-item">
+          <h4>Comme nom</h4>
+          <p>This contract gives us significant <em>leverage</em> in the negotiation.<br>Our brand reputation is our greatest <em>leverage</em>.</p>
+        </div>
+        <div class="usage-item">
+          <h4>Expressions avancées</h4>
+          <p><em>Leverage a competitive advantage</em> · <em>Negotiate from a position of leverage</em> · <em>Financial leverage</em> (endettement stratégique)</p>
+        </div>
+      </div>
+      <div class="challenge-box">
+        <div class="challenge-label">🎯 Défi</div>
+        <p class="challenge-text"><strong>Écrit :</strong> Rédigez deux phrases — une où "leverage" est utilisé comme verbe dans un contexte de pitch investisseur, et une où il est utilisé comme nom dans un contexte de négociation salariale.<br><br><strong>Oral (via plateforme) :</strong> Expliquez en 30 secondes à voix haute comment vous pourriez "leverage" vos compétences actuelles pour décrocher un meilleur poste.</p>
+      </div>
+    </div>
+
+    <!-- WORD 2: SYNERGY -->
+    <div class="card-row">
+      <div class="card-d-front">
+        <div class="card-d-corner tl"></div><div class="card-d-corner tr"></div>
+        <div class="card-d-corner bl"></div><div class="card-d-corner br"></div>
+        <div class="card-d-logo">
+          <div class="bg-letter">S</div>
+          <div class="card-d-logo-text">ENGLISH</div>
+          <div class="card-d-logo-sub">Hub</div>
+        </div>
+      </div>
+      <div class="card-d-back">
+        <div class="bg-letter">S</div>
+        <div>
+          <div class="card-word-en">Synergy</div>
+          <div class="card-phonetic">SIN-ur-jee</div>
+          <div class="card-underline"></div>
+          <div class="card-word-fr">Synergie</div>
+          <div class="card-def">L'effet combiné de deux entités qui produit un résultat supérieur à ce que chacune pourrait accomplir seule.</div>
+          <div class="card-ex-label">Exemple</div>
+          <div class="card-ex-en">English : The <span>synergy</span> between our teams has accelerated delivery by 40%.</div>
+          <div class="card-ex-fr">Français : La <span>synergie</span> entre nos équipes a accéléré la livraison de 40%.</div>
+        </div>
+        <div class="card-illus">🤝</div>
+        <div class="card-qr">
+          <div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div>
+          <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+          <div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div>
+          <div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+          <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+        </div>
+      </div>
+    </div>
+    <div class="usage-section">
+      <div class="usage-title">Utilisations — Synergy (Niveau D)</div>
+      <div class="usage-grid">
+        <div class="usage-item"><h4>En réunion</h4><p>I see great <em>synergy</em> between our two divisions.<br>Let's explore potential <em>synergies</em> before signing.</p></div>
+        <div class="usage-item"><h4>En présentation</h4><p>This merger creates <em>synergy</em> at every level of the value chain.<br>The <em>synergistic</em> effect will be visible within Q2.</p></div>
+        <div class="usage-item"><h4>Attention</h4><p><em>Synergy</em> est un mot souvent surutilisé en business. L'utiliser avec précision (données, chiffres) renforce votre crédibilité plutôt que de l'affaiblir.</p></div>
+      </div>
+      <div class="challenge-box">
+        <div class="challenge-label">🎯 Défi</div>
+        <p class="challenge-text"><strong>Situation simulée :</strong> Vous présentez un partenariat potentiel à un investisseur. Construisez un paragraphe de 4-5 phrases utilisant "synergy" + au moins 3 autres mots de niveau D (leverage, strategic, sustainable, scalable). <br><br><strong>Défi avancé :</strong> Quelle est la différence entre "synergy" et "collaboration" en contexte business ? Expliquez en anglais.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: LEVEL C — PROFESSIONAL
+════════════════════════════════════════ -->
+<div class="page" id="page-level-c">
+  <div class="flashcard-page">
+    <h1>Niveau C · Professionnel</h1>
+    <h2>Professional</h2>
+    <p class="page-sub">Anglais corporate pour réunions, emails et négociations · Dos & Face des flashcards + utilisations étendues</p>
+
+    <!-- WORD 1: FEEDBACK -->
+    <div class="card-row">
+      <div class="card-c-front">
+        <div class="card-c-texture"></div>
+        <div class="card-c-corner tl"></div><div class="card-c-corner tr"></div>
+        <div class="card-c-corner bl"></div><div class="card-c-corner br"></div>
+        <div class="card-c-logo">
+          <div class="card-c-logo-text">ENGLISH</div>
+          <div class="card-c-logo-sub">Hub</div>
+        </div>
+      </div>
+      <div class="card-c-back">
+        <div>
+          <div class="card-c-header">
+            <div>
+              <div class="card-c-header-word">Feedback</div>
+              <div class="card-c-header-phon">fiid'bak"</div>
+            </div>
+          </div>
+          <div class="card-c-body">
+            <div class="card-word-fr">Retour d'information / Commentaire</div>
+            <div class="card-def" style="color:#555;">Une réaction ou une réplique donnée à une action ou une situation, souvent pour évaluer ou corriger.</div>
+            <div class="card-underline" style="background:rgba(28,53,87,0.2);margin:10px 0;"></div>
+            <div class="card-ex-label" style="color:rgba(28,53,87,0.5);">Exemple</div>
+            <div class="card-ex-en" style="color:#333;"><span style="color:#1c3557;font-style:normal;font-weight:600;">English</span> : We welcome your <span style="text-decoration:underline;color:#1c3557;">feedback</span>.</div>
+            <div class="card-ex-fr" style="color:#555;"><span style="font-weight:600;color:#333;">Français</span> : Nous accueillons vos <span style="text-decoration:underline;color:rgba(28,53,87,0.7);">retours d'information</span>.</div>
+          </div>
+        </div>
+        <div class="card-c-illus">💬</div>
+        <div class="card-c-qr">
+          <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+          <div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div>
+          <div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div>
+          <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell e"></div><div class="qr-cell"></div>
+          <div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div>
+        </div>
+      </div>
+    </div>
+    <div class="usage-section" style="border-color:rgba(100,160,220,0.15);background:rgba(100,160,220,0.02);">
+      <div class="usage-title" style="color:#7aabdf;">Utilisations — Feedback (Niveau C)</div>
+      <div class="usage-grid">
+        <div class="usage-item"><h4>Demander un feedback</h4><p>Could you provide <em>feedback</em> on this proposal?<br>I'd appreciate your <em>feedback</em> before the deadline.</p></div>
+        <div class="usage-item"><h4>Donner un feedback</h4><p>My <em>feedback</em> on the presentation is mostly positive.<br>Here is my <em>feedback</em> regarding the draft contract.</p></div>
+        <div class="usage-item"><h4>Expressions courantes</h4><p><em>Constructive feedback</em> · <em>Give feedback</em> · <em>Positive/negative feedback</em> · <em>Feedback loop</em> (processus d'amélioration continue)</p></div>
+      </div>
+      <div class="challenge-box" style="border-color:rgba(100,160,220,0.12);">
+        <div class="challenge-label">🎯 Défi</div>
+        <p class="challenge-text"><strong>Email :</strong> Rédigez un email de 4 lignes à un collègue pour lui demander son feedback sur un rapport que vous avez partagé. Utilisez "feedback" + une formule de politesse professionnelle.<br><br><strong>Traduction :</strong> Traduisez en anglais professionnel : <em>"Je vous serais reconnaissant de bien vouloir me faire part de vos remarques concernant notre dernière proposition commerciale."</em></p>
+      </div>
+    </div>
+
+    <!-- WORD 2: DEADLINE -->
+    <div class="card-row">
+      <div class="card-c-front">
+        <div class="card-c-texture"></div>
+        <div class="card-c-corner tl"></div><div class="card-c-corner tr"></div>
+        <div class="card-c-corner bl"></div><div class="card-c-corner br"></div>
+        <div class="card-c-logo">
+          <div class="card-c-logo-text">ENGLISH</div>
+          <div class="card-c-logo-sub">Hub</div>
+        </div>
+      </div>
+      <div class="card-c-back">
+        <div>
+          <div class="card-c-header">
+            <div>
+              <div class="card-c-header-word">Deadline</div>
+              <div class="card-c-header-phon">DED-line</div>
+            </div>
+          </div>
+          <div class="card-c-body">
+            <div class="card-word-fr">Date limite / Échéance</div>
+            <div class="card-def" style="color:#555;">La date ou l'heure à laquelle une tâche, un projet ou une livraison doit être complété.</div>
+            <div class="card-underline" style="background:rgba(28,53,87,0.2);margin:10px 0;"></div>
+            <div class="card-ex-label" style="color:rgba(28,53,87,0.5);">Exemple</div>
+            <div class="card-ex-en" style="color:#333;"><span style="color:#1c3557;font-weight:600;">English</span> : Can we extend the <span style="text-decoration:underline;color:#1c3557;">deadline</span> by two days?</div>
+            <div class="card-ex-fr" style="color:#555;"><span style="font-weight:600;color:#333;">Français</span> : Pouvons-nous prolonger <span style="text-decoration:underline;color:rgba(28,53,87,0.7);">l'échéance</span> de deux jours ?</div>
+          </div>
+        </div>
+        <div class="card-c-illus">📅</div>
+        <div class="card-c-qr">
+          <div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div>
+          <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell e"></div>
+          <div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+          <div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div>
+          <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+        </div>
+      </div>
+    </div>
+    <div class="usage-section" style="border-color:rgba(100,160,220,0.15);background:rgba(100,160,220,0.02);">
+      <div class="usage-title" style="color:#7aabdf;">Utilisations — Deadline (Niveau C)</div>
+      <div class="usage-grid">
+        <div class="usage-item"><h4>Gestion de projet</h4><p>The project <em>deadline</em> is Friday, March 28.<br>We're approaching the <em>deadline</em> — let's prioritize.</p></div>
+        <div class="usage-item"><h4>Négocier une extension</h4><p>Due to unforeseen delays, could we push the <em>deadline</em> back?<br>I'd like to request a <em>deadline</em> extension of 48 hours.</p></div>
+        <div class="usage-item"><h4>Expressions</h4><p><em>Meet a deadline</em> (respecter) · <em>Miss a deadline</em> (manquer) · <em>Tight deadline</em> (délai serré) · <em>Hard deadline</em> (irrévocable)</p></div>
+      </div>
+      <div class="challenge-box" style="border-color:rgba(100,160,220,0.12);">
+        <div class="challenge-label">🎯 Défi</div>
+        <p class="challenge-text"><strong>Oral :</strong> Comment diriez-vous poliment à votre manager que vous ne pouvez pas respecter la deadline ? Formulez deux versions — une formelle, une moins formelle.<br><br><strong>Différence :</strong> Quelle est la différence entre "meet a deadline" et "beat a deadline" ? Utilisez chacune dans une phrase.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: LEVEL AB — STANDARD
+════════════════════════════════════════ -->
+<div class="page" id="page-level-ab">
+  <div class="flashcard-page">
+    <h1>Niveau A–B · Essentiel</h1>
+    <h2>Standard</h2>
+    <p class="page-sub">Vocabulaire fondamental pour débutants et intermédiaires · Dos & Face des flashcards + utilisations étendues</p>
+
+    <!-- WORD 1: ABOLISH -->
+    <div class="card-row">
+      <div class="card-ab-front">
+        <div class="card-ab-bg"></div>
+        <div class="card-ab-corner tl"></div><div class="card-ab-corner tr"></div>
+        <div class="card-ab-corner bl"></div><div class="card-ab-corner br"></div>
+        <div class="card-ab-logo">
+          <div class="card-ab-logo-text">ENGLISH</div>
+          <div class="card-ab-logo-sub">Hub</div>
+        </div>
+      </div>
+      <div class="card-ab-back">
+        <div class="card-ab-corner2 tl"></div><div class="card-ab-corner2 tr"></div>
+        <div class="card-ab-corner2 bl"></div><div class="card-ab-corner2 br"></div>
+        <div class="card-ab-ball"></div>
+        <div>
+          <div class="card-word-en">Abolish</div>
+          <div class="card-phonetic">uh-BOL-ish</div>
+          <div class="card-underline"></div>
+          <div class="card-word-fr" style="font-style:normal;font-weight:700;">Abolir</div>
+          <div class="card-def">Supprimer officiellement une loi, une règle ou un système.</div>
+          <div class="card-ex-label" style="color:rgba(58,32,0,0.5);">Exemple</div>
+          <div class="card-ex-en">English : The government decided to <span>abolish</span> the old law.</div>
+          <div class="card-ex-fr">Français : Le gouvernement a décidé <span>d'abolir</span> l'ancienne loi.</div>
+        </div>
+        <div class="card-ab-illus">✊</div>
+        <div class="card-ab-qr">
+          <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+          <div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell e"></div>
+          <div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+          <div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell e"></div>
+          <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+        </div>
+      </div>
+    </div>
+    <div class="usage-section" style="border-color:rgba(196,120,30,0.15);background:rgba(196,120,30,0.02);">
+      <div class="usage-title" style="color:#c47820;">Utilisations — Abolish (Niveau A–B)</div>
+      <div class="usage-grid">
+        <div class="usage-item"><h4>Contexte général</h4><p>Many countries have <em>abolished</em> the death penalty.<br>The new government wants to <em>abolish</em> this practice.</p></div>
+        <div class="usage-item"><h4>Contexte business</h4><p>The company decided to <em>abolish</em> outdated procedures.<br>They plan to <em>abolish</em> the dress code policy.</p></div>
+        <div class="usage-item"><h4>Mots de la même famille</h4><p><em>Abolition</em> (n.) · <em>Abolished</em> (past tense) · <em>Abolitionist</em> (n. — personne qui défend l'abolition d'une loi)</p></div>
+      </div>
+      <div class="challenge-box" style="border-color:rgba(196,120,30,0.12);">
+        <div class="challenge-label">🎯 Défi</div>
+        <p class="challenge-text"><strong>Traduction :</strong> Traduisez ces phrases en anglais :<br>1. <em>"Le directeur a décidé d'abolir la réunion hebdomadaire."</em><br>2. <em>"Beaucoup de lois injustes ont été abolies au cours du 20e siècle."</em><br><br><strong>Composition :</strong> Écrivez 2 phrases originales utilisant "abolish" — une dans un contexte scolaire, une dans un contexte professionnel.</p>
+      </div>
+    </div>
+
+    <!-- WORD 2: ACHIEVE -->
+    <div class="card-row">
+      <div class="card-ab-front">
+        <div class="card-ab-bg"></div>
+        <div class="card-ab-corner tl"></div><div class="card-ab-corner tr"></div>
+        <div class="card-ab-corner bl"></div><div class="card-ab-corner br"></div>
+        <div class="card-ab-logo">
+          <div class="card-ab-logo-text">ENGLISH</div>
+          <div class="card-ab-logo-sub">Hub</div>
+        </div>
+      </div>
+      <div class="card-ab-back">
+        <div class="card-ab-corner2 tl"></div><div class="card-ab-corner2 tr"></div>
+        <div class="card-ab-corner2 bl"></div><div class="card-ab-corner2 br"></div>
+        <div class="card-ab-ball"></div>
+        <div>
+          <div class="card-word-en">Achieve</div>
+          <div class="card-phonetic">uh-CHEEV</div>
+          <div class="card-underline"></div>
+          <div class="card-word-fr" style="font-style:normal;font-weight:700;">Atteindre / Réaliser</div>
+          <div class="card-def">Accomplir quelque chose avec succès après un effort ou un travail.</div>
+          <div class="card-ex-label" style="color:rgba(58,32,0,0.5);">Exemple</div>
+          <div class="card-ex-en">English : She worked hard to <span>achieve</span> her goals.</div>
+          <div class="card-ex-fr">Français : Elle a travaillé dur pour <span>atteindre</span> ses objectifs.</div>
+        </div>
+        <div class="card-ab-illus">🏆</div>
+        <div class="card-ab-qr">
+          <div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+          <div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell e"></div>
+          <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div>
+          <div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell e"></div>
+          <div class="qr-cell"></div><div class="qr-cell e"></div><div class="qr-cell e"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+        </div>
+      </div>
+    </div>
+    <div class="usage-section" style="border-color:rgba(196,120,30,0.15);background:rgba(196,120,30,0.02);">
+      <div class="usage-title" style="color:#c47820;">Utilisations — Achieve (Niveau A–B)</div>
+      <div class="usage-grid">
+        <div class="usage-item"><h4>Contexte personnel</h4><p>I want to <em>achieve</em> my dream of starting a business.<br>He <em>achieved</em> his diploma after 3 years of hard work.</p></div>
+        <div class="usage-item"><h4>Contexte professionnel</h4><p>Our team <em>achieved</em> all quarterly targets.<br>To <em>achieve</em> growth, we need a clear strategy.</p></div>
+        <div class="usage-item"><h4>Famille de mots</h4><p><em>Achievement</em> (n. — réussite) · <em>Achievable</em> (adj. — réalisable) · <em>High-achiever</em> (n. — personne très performante)</p></div>
+      </div>
+      <div class="challenge-box" style="border-color:rgba(196,120,30,0.12);">
+        <div class="challenge-label">🎯 Défi</div>
+        <p class="challenge-text"><strong>Personnel :</strong> Listez 3 choses que vous souhaitez <em>achieve</em> cette année. Écrivez-les en anglais avec la structure : <em>"This year, I want to achieve..."</em><br><br><strong>Différence :</strong> Quelle est la différence entre <em>"achieve a goal"</em> et <em>"reach a goal"</em> ? Les deux sont corrects, mais lequel est le plus professionnel ? Cherchez et expliquez.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PAGE: SHOP
+════════════════════════════════════════ -->
+<div class="page" id="page-shop">
+  <div class="shop-hero">
+    <h1>Boutique · English Hub</h1>
+    <h2>Commandez votre Kit</h2>
+    <p>Livraison à Lomé et dans toute l'Afrique de l'Ouest · Paiement sécurisé · Stock limité</p>
+  </div>
+
+  <div class="shop-main">
+    <div class="shop-grid">
+      <div class="product-card">
+        <div class="product-img ab-bg">
+          <div class="product-img-text"><span class="big">🃏</span><span class="small">A–B Standard</span></div>
+        </div>
+        <div class="product-body">
+          <div class="product-level">Niveau A–B · Essentiel</div>
+          <div class="product-name">Flashcards Standard</div>
+          <div class="product-desc">10 cartes physiques. Vocabulaire essentiel. Design African Traditional.</div>
+          <div class="product-includes"><span>10 cartes</span><span>QR audio</span><span>Boîte</span></div>
+          <div class="product-price">2 500 F CFA</div>
+          <div class="product-price-sub">Livraison incluse à Lomé</div>
+          <button class="add-btn outline" onclick="addToCart('Flashcards Standard', 2500)">Ajouter au panier</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img c-bg">
+          <div class="product-img-text"><span class="big">🃏</span><span class="small">C Professional</span></div>
+        </div>
+        <div class="product-body">
+          <div class="product-level">Niveau C · Professionnel</div>
+          <div class="product-name">Flashcards Professional</div>
+          <div class="product-desc">10 cartes physiques. Anglais corporate. Design bleu marine et argent.</div>
+          <div class="product-includes"><span>10 cartes</span><span>QR audio</span><span>Boîte</span></div>
+          <div class="product-price">3 000 F CFA</div>
+          <div class="product-price-sub">Livraison incluse à Lomé</div>
+          <button class="add-btn outline" onclick="addToCart('Flashcards Professional', 3000)">Ajouter au panier</button>
+        </div>
+      </div>
+
+      <div class="product-card featured">
+        <div class="product-img d-bg">
+          <div class="product-img-tag">BESTSELLER</div>
+          <div class="product-img-text"><span class="big">🃏</span><span class="small">D Afro-Royal</span></div>
+        </div>
+        <div class="product-body">
+          <div class="product-level">Niveau D · Élite</div>
+          <div class="product-name">Flashcards Afro-Royal</div>
+          <div class="product-desc">10 cartes premium. Vocabulaire avancé. Design noir et or, motifs africains.</div>
+          <div class="product-includes"><span>10 cartes</span><span>QR audio</span><span>Boîte premium</span></div>
+          <div class="product-price">3 500 F CFA</div>
+          <div class="product-price-sub">Livraison incluse à Lomé</div>
+          <button class="add-btn" onclick="addToCart('Flashcards Afro-Royal', 3500)">Ajouter au panier</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img full-bg">
+          <div class="product-img-text"><span class="big">📖</span><span class="small">Guide Illustré</span></div>
+        </div>
+        <div class="product-body">
+          <div class="product-level">Tous niveaux</div>
+          <div class="product-name">Guide Illustré</div>
+          <div class="product-desc">~40 pages. 6 sections progressives. Scénarios business, règles, exemples et défis.</div>
+          <div class="product-includes"><span>40 pages</span><span>QR codes</span><span>Bilingue</span></div>
+          <div class="product-price">5 000 F CFA</div>
+          <div class="product-price-sub">Livraison incluse à Lomé</div>
+          <button class="add-btn outline" onclick="addToCart('Guide Illustré', 5000)">Ajouter au panier</button>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img c-bg">
+          <div class="product-img-text"><span class="big">📋</span><span class="small">Livret de Poche</span></div>
+        </div>
+        <div class="product-body">
+          <div class="product-level">Tous niveaux</div>
+          <div class="product-name">Livret de Poche</div>
+          <div class="product-desc">20 pages. Phrases prêtes à l'emploi par situation. Format compact à emporter partout.</div>
+          <div class="product-includes"><span>20 pages</span><span>10 situations</span><span>Format A6</span></div>
+          <div class="product-price">1 500 F CFA</div>
+          <div class="product-price-sub">Livraison incluse à Lomé</div>
+          <button class="add-btn outline" onclick="addToCart('Livret de Poche', 1500)">Ajouter au panier</button>
+        </div>
+      </div>
+
+      <div class="product-card featured">
+        <div class="product-img kit-bg">
+          <div class="product-img-tag">MEILLEURE OFFRE</div>
+          <div class="product-img-text"><span class="big">📦</span><span class="small">Kit Complet</span></div>
+        </div>
+        <div class="product-body">
+          <div class="product-level">Pack Intégral</div>
+          <div class="product-name">English Hub — Kit Complet</div>
+          <div class="product-desc">Les 30 flashcards (3 gammes) + Guide illustré + Livret de poche + Accès plateforme web.</div>
+          <div class="product-includes"><span>30 flashcards</span><span>Guide 40p</span><span>Livret</span><span>Plateforme</span></div>
+          <div><span class="product-old-price">15 500 F CFA</span></div>
+          <div class="product-price">12 000 F CFA</div>
+          <div class="product-price-sub">Économisez 3 500 F CFA · Livraison offerte</div>
+          <button class="add-btn" onclick="addToCart('Kit Complet English Hub', 12000)">Commander ce Kit</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDER FORM -->
+    <div style="margin-bottom:24px;">
+      <div class="section-label">Commander directement</div>
+      <h2 class="section-title" style="font-size:32px;text-align:left;margin-bottom:8px;">Passez votre commande</h2>
+      <p style="color:rgba(232,224,208,0.4);font-size:14px;font-weight:300;margin-bottom:40px;">Remplissez le formulaire — notre équipe vous contacte dans les 24h pour confirmer la livraison.</p>
+    </div>
+    <div class="order-section">
+      <div class="order-form-wrap">
+        <h3>Informations de commande</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Prénom</label>
+            <input type="text" class="form-input" placeholder="Koffi">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nom</label>
+            <input type="text" class="form-input" placeholder="Mensah">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">WhatsApp / Téléphone</label>
+          <input type="text" class="form-input" placeholder="+228 9X XX XX XX">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email (optionnel)</label>
+          <input type="email" class="form-input" placeholder="votre@email.com">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Produit(s) souhaité(s)</label>
+          <select class="form-select">
+            <option>Kit Complet English Hub — 12 000 F CFA</option>
+            <option>Flashcards Afro-Royal (D) — 3 500 F CFA</option>
+            <option>Flashcards Professional (C) — 3 000 F CFA</option>
+            <option>Flashcards Standard (A-B) — 2 500 F CFA</option>
+            <option>Guide Illustré — 5 000 F CFA</option>
+            <option>Livret de Poche — 1 500 F CFA</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Quartier / Zone de livraison</label>
+          <input type="text" class="form-input" placeholder="Bè, Adidogomé, Tokoin...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Message (optionnel)</label>
+          <input type="text" class="form-input" placeholder="Commande urgente, colis cadeau...">
+        </div>
+        <button class="submit-btn" onclick="submitOrder()">Confirmer ma commande →</button>
+      </div>
+
+      <div>
+        <div class="order-summary" id="order-summary">
+          <h3>Résumé de commande</h3>
+          <div id="cart-items">
+            <div class="summary-item">
+              <div class="summary-item-name">Aucun article sélectionné</div>
+              <div class="summary-item-price">—</div>
+            </div>
+          </div>
+          <div class="summary-total">
+            <div class="summary-total-label">TOTAL</div>
+            <div class="summary-total-price" id="cart-total">0 F</div>
+          </div>
+          <div class="summary-note">Livraison à Lomé incluse pour le Kit Complet. Pour les autres zones ou produits individuels, les frais de livraison seront confirmés par notre équipe.</div>
+          <div class="badge-secure">🔒 Paiement à la livraison disponible</div>
+        </div>
+
+        <div style="margin-top:16px;padding:24px;border:1px solid rgba(196,160,75,0.12);background:rgba(196,160,75,0.02);">
+          <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#C4A04B;font-weight:700;margin-bottom:12px;">Contact direct</div>
+          <p style="font-size:13px;color:rgba(232,224,208,0.55);line-height:1.7;font-weight:300;">Vous préférez commander par WhatsApp ?<br>Envoyez "ENGLISH HUB" au numéro ci-dessous et notre équipe vous guidera.</p>
+          <div style="font-family:'Cinzel',serif;font-size:18px;color:#C4A04B;margin-top:12px;">+228 XX XX XX XX</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span id="toast-icon">✅</span>
+  <span id="toast-msg">Action effectuée</span>
+</div>
+
+<script>
+// ── PAGE NAV ──
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-link').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  window.scrollTo(0, 0);
+  const map = { landing:'Accueil', pos:'Grammaire', 'level-d':'Afro-Royal', 'level-c':'Professional', 'level-ab':'Standard', shop:'Boutique' };
+  document.querySelectorAll('.nav-link').forEach(n => { if (n.textContent.trim() === map[id]) n.classList.add('active'); });
+}
+
+// ── CART ──
+let cart = [];
+function addToCart(name, price) {
+  cart.push({ name, price });
+  updateCart();
+  showToast('🛒', `"${name}" ajouté au panier`);
+}
+
+function updateCart() {
+  const container = document.getElementById('cart-items');
+  if (cart.length === 0) {
+    container.innerHTML = '<div class="summary-item"><div class="summary-item-name">Aucun article</div><div class="summary-item-price">—</div></div>';
+    document.getElementById('cart-total').textContent = '0 F';
+    return;
+  }
+  container.innerHTML = cart.map(item => `
+    <div class="summary-item">
+      <div class="summary-item-name">${item.name}</div>
+      <div class="summary-item-price">${item.price.toLocaleString('fr-FR')} F</div>
+    </div>`).join('');
+  const total = cart.reduce((s, i) => s + i.price, 0);
+  document.getElementById('cart-total').textContent = total.toLocaleString('fr-FR') + ' F CFA';
+}
+
+function submitOrder() {
+  showToast('🎉', 'Commande reçue ! Nous vous contactons dans les 24h.');
+  cart = [];
+  updateCart();
+}
+
+// ── TOAST ──
+let toastT;
+function showToast(icon, msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-icon').textContent = icon;
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastT);
+  toastT = setTimeout(() => t.classList.remove('show'), 3200);
+}
+</script>
+</body>
+</html>

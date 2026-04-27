@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Hub — Learn Business English</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<style>
+/* ── VARIABLES ── */
+:root {
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --gold-dim: rgba(201,168,76,0.15);
+  --dark: #0D0E12;
+  --dark2: #14151C;
+  --dark3: #1C1D27;
+  --dark4: #252636;
+  --border: rgba(201,168,76,0.2);
+  --text: #E8E8F0;
+  --text-dim: #8888A0;
+  --red: #E05C5C;
+  --green: #4CAF7A;
+  --blue: #4C8FE0;
+  --radius: 16px;
+  --radius-sm: 10px;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--dark);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── BACKGROUND TEXTURE ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 10%, rgba(201,168,76,0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 30% at 10% 80%, rgba(76,143,224,0.05) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── LAYOUT ── */
+.shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  background: var(--dark2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  padding: 28px 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.logo {
+  padding: 0 24px 28px;
+  border-bottom: 1px solid var(--border);
+}
+.logo-mark {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: -0.5px;
+  color: var(--gold);
+}
+.logo-mark span { color: var(--text-dim); font-weight: 400; font-size: 13px; display: block; margin-top: 2px; letter-spacing: 0.3px; }
+
+.nav { flex: 1; padding: 20px 0; }
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 24px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-dim);
+  transition: all 0.2s;
+  border-left: 3px solid transparent;
+  position: relative;
+}
+.nav-item:hover { color: var(--text); background: var(--dark3); }
+.nav-item.active {
+  color: var(--gold);
+  background: var(--gold-dim);
+  border-left-color: var(--gold);
+}
+.nav-icon { font-size: 18px; width: 22px; text-align: center; }
+.nav-badge {
+  margin-left: auto;
+  background: var(--gold);
+  color: var(--dark);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 20px;
+}
+
+.sidebar-footer {
+  padding: 20px 24px;
+  border-top: 1px solid var(--border);
+}
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.avatar {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--dark);
+  flex-shrink: 0;
+}
+.user-name { font-size: 13px; font-weight: 500; }
+.user-level {
+  font-size: 11px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+/* ── MAIN ── */
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.topbar {
+  padding: 20px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  background: rgba(13,14,18,0.8);
+  backdrop-filter: blur(12px);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.page-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+}
+.page-sub { font-size: 13px; color: var(--text-dim); margin-top: 2px; }
+
+.topbar-right { display: flex; align-items: center; gap: 20px; }
+.streak-pill {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  padding: 7px 16px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.streak-fire { font-size: 18px; animation: flicker 1.5s infinite alternate; }
+@keyframes flicker { from { transform: scale(1); } to { transform: scale(1.15) rotate(3deg); } }
+.streak-count { color: var(--gold); }
+
+.xp-pill {
+  display: flex; align-items: center; gap: 7px;
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  padding: 7px 16px;
+  border-radius: 30px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--blue);
+}
+
+/* ── CONTENT ── */
+.content { padding: 32px 36px; flex: 1; }
+
+/* ── SECTION: HOME ── */
+.section { display: none; }
+.section.active { display: block; }
+
+/* ── HERO BANNER ── */
+.hero {
+  background: linear-gradient(135deg, var(--dark3) 0%, var(--dark4) 100%);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 36px;
+  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+}
+.hero::after {
+  content: 'EH';
+  position: absolute;
+  right: -20px; top: -30px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 140px;
+  color: rgba(201,168,76,0.05);
+  pointer-events: none;
+  line-height: 1;
+}
+.hero-text h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.hero-text h2 em { color: var(--gold); font-style: normal; }
+.hero-text p { color: var(--text-dim); font-size: 14px; max-width: 360px; line-height: 1.6; }
+.hero-cta {
+  background: var(--gold);
+  color: var(--dark);
+  border: none;
+  padding: 13px 28px;
+  border-radius: 30px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.hero-cta:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,168,76,0.3); }
+
+/* ── STATS ROW ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.stat-card {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px 22px;
+  transition: border-color 0.2s;
+}
+.stat-card:hover { border-color: var(--gold); }
+.stat-label { font-size: 12px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px; }
+.stat-value { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 30px; color: var(--gold); }
+.stat-unit { font-size: 13px; color: var(--text-dim); margin-top: 4px; }
+
+/* ── PROGRESS LEVELS ── */
+.levels-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.level-card {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 18px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.level-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+.level-card:hover::before,
+.level-card.current::before { transform: scaleX(1); }
+.level-card.locked { opacity: 0.45; cursor: not-allowed; }
+.level-card.current { border-color: var(--gold); background: var(--gold-dim); }
+.level-tag {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 13px;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+.level-name { font-size: 13px; font-weight: 500; margin-bottom: 10px; }
+.level-bar { height: 5px; background: var(--dark4); border-radius: 3px; overflow: hidden; }
+.level-fill { height: 100%; border-radius: 3px; background: linear-gradient(90deg, var(--gold), var(--gold-light)); transition: width 1s ease; }
+.level-pct { font-size: 11px; color: var(--text-dim); margin-top: 6px; }
+.lock-icon { font-size: 22px; margin-bottom: 6px; }
+
+/* ── TWO COL ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+/* ── CARDS ── */
+.card {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+}
+.card-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 18px;
+}
+.card-title {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+}
+.card-action {
+  font-size: 12px;
+  color: var(--gold);
+  cursor: pointer;
+  font-weight: 500;
+}
+.card-action:hover { text-decoration: underline; }
+
+/* ── ACTIVITY LIST ── */
+.activity-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.activity-item:last-child { border-bottom: none; }
+.activity-dot {
+  width: 36px; height: 36px;
+  border-radius: 10px;
+  background: var(--dark3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+.activity-text { flex: 1; }
+.activity-main { font-size: 13px; font-weight: 500; }
+.activity-sub { font-size: 12px; color: var(--text-dim); margin-top: 2px; }
+.activity-score { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: var(--green); }
+
+/* ── LEADERBOARD ── */
+.lb-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+.lb-item:last-child { border-bottom: none; }
+.lb-rank {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  width: 28px;
+  text-align: center;
+  color: var(--text-dim);
+}
+.lb-rank.gold { color: #FFD700; }
+.lb-rank.silver { color: #C0C0C0; }
+.lb-rank.bronze { color: #CD7F32; }
+.lb-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--dark);
+  flex-shrink: 0;
+}
+.lb-name { flex: 1; font-size: 13px; font-weight: 500; }
+.lb-xp { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 14px; color: var(--blue); }
+.lb-item.me .lb-name::after { content: ' (Moi)'; color: var(--gold); font-size: 11px; }
+
+/* ── QUIZ SECTION ── */
+.quiz-wrap { max-width: 640px; margin: 0 auto; }
+.quiz-header { text-align: center; margin-bottom: 32px; }
+.quiz-header h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 24px; margin-bottom: 8px; }
+.quiz-header p { color: var(--text-dim); font-size: 14px; }
+
+.quiz-progress-wrap { margin-bottom: 32px; }
+.quiz-progress-info { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-dim); margin-bottom: 8px; }
+.quiz-bar { height: 6px; background: var(--dark3); border-radius: 4px; overflow: hidden; }
+.quiz-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius: 4px; transition: width 0.5s ease; }
+
+.question-card {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  margin-bottom: 20px;
+}
+.q-level { font-size: 11px; color: var(--gold); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+.q-text { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 20px; line-height: 1.4; margin-bottom: 8px; }
+.q-context { font-size: 13px; color: var(--text-dim); font-style: italic; }
+
+.options { display: grid; gap: 12px; }
+.option {
+  background: var(--dark3);
+  border: 2px solid var(--dark4);
+  border-radius: var(--radius-sm);
+  padding: 16px 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.18s;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.option:hover:not(.locked) { border-color: var(--gold); background: var(--gold-dim); }
+.option.correct { border-color: var(--green) !important; background: rgba(76,175,122,0.1) !important; }
+.option.wrong { border-color: var(--red) !important; background: rgba(224,92,92,0.1) !important; }
+.option.locked { cursor: not-allowed; }
+.opt-letter {
+  width: 28px; height: 28px;
+  border-radius: 8px;
+  background: var(--dark4);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  flex-shrink: 0;
+  transition: all 0.18s;
+}
+.option:hover:not(.locked) .opt-letter { background: var(--gold); color: var(--dark); }
+.option.correct .opt-letter { background: var(--green); color: white; }
+.option.wrong .opt-letter { background: var(--red); color: white; }
+
+.feedback {
+  padding: 16px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  line-height: 1.6;
+  display: none;
+  margin-bottom: 16px;
+}
+.feedback.show { display: block; }
+.feedback.correct { background: rgba(76,175,122,0.12); border: 1px solid rgba(76,175,122,0.3); }
+.feedback.wrong { background: rgba(224,92,92,0.1); border: 1px solid rgba(224,92,92,0.25); }
+.feedback-icon { font-size: 18px; margin-bottom: 6px; }
+.feedback strong { font-family: 'Syne', sans-serif; font-weight: 700; }
+
+.quiz-btn {
+  width: 100%;
+  padding: 15px;
+  border-radius: 30px;
+  border: none;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.quiz-btn.primary { background: var(--gold); color: var(--dark); }
+.quiz-btn.primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+.quiz-btn:disabled { opacity: 0.4; cursor: not-allowed; transform: none !important; }
+
+/* ── RESULT CARD ── */
+.result-card {
+  text-align: center;
+  padding: 40px;
+  display: none;
+}
+.result-card.show { display: block; }
+.result-emoji { font-size: 64px; margin-bottom: 16px; animation: pop 0.5s cubic-bezier(0.34,1.56,0.64,1); }
+@keyframes pop { from { transform: scale(0); } to { transform: scale(1); } }
+.result-score { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 48px; color: var(--gold); }
+.result-label { color: var(--text-dim); font-size: 15px; margin-bottom: 24px; }
+.result-xp { display: inline-block; background: var(--gold-dim); border: 1px solid var(--border); padding: 8px 20px; border-radius: 20px; font-size: 14px; font-weight: 600; color: var(--gold); margin-bottom: 24px; }
+
+/* ── DUELS ── */
+.duels-header { margin-bottom: 24px; }
+.duels-header h2 { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 22px; margin-bottom: 6px; }
+.duels-header p { color: var(--text-dim); font-size: 14px; }
+
+.duel-card {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: border-color 0.2s;
+}
+.duel-card:hover { border-color: var(--gold); }
+.duel-players {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.duel-player { text-align: center; }
+.duel-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+  color: var(--dark);
+  margin: 0 auto 6px;
+}
+.duel-pname { font-size: 12px; font-weight: 500; }
+.duel-plevel { font-size: 11px; color: var(--gold); }
+.duel-vs { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 18px; color: var(--text-dim); }
+.duel-info { flex: 1; }
+.duel-topic { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.duel-meta { font-size: 12px; color: var(--text-dim); }
+.duel-status {
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.duel-status.pending { background: rgba(201,168,76,0.15); color: var(--gold); }
+.duel-status.active { background: rgba(76,175,122,0.15); color: var(--green); }
+.duel-status.won { background: rgba(76,143,224,0.15); color: var(--blue); }
+.duel-btn {
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.duel-btn.accept { background: var(--green); color: white; }
+.duel-btn.accept:hover { background: #3d9660; }
+.duel-btn.challenge { background: var(--dark3); border: 1px solid var(--border); color: var(--text); }
+.duel-btn.challenge:hover { border-color: var(--gold); color: var(--gold); }
+
+/* ── COMMUNITY ── */
+.community-grid { display: grid; grid-template-columns: 1fr 320px; gap: 20px; }
+.post-card {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 14px;
+  transition: border-color 0.2s;
+}
+.post-card:hover { border-color: rgba(201,168,76,0.4); }
+.post-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.post-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--dark);
+  flex-shrink: 0;
+}
+.post-meta { flex: 1; }
+.post-author { font-size: 13px; font-weight: 600; }
+.post-time { font-size: 11px; color: var(--text-dim); }
+.post-level { font-size: 11px; color: var(--gold); font-weight: 600; }
+.post-body { font-size: 14px; line-height: 1.7; color: #C8C8DC; margin-bottom: 14px; }
+.post-tag {
+  display: inline-block;
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  color: var(--gold);
+  margin-right: 6px;
+  margin-bottom: 10px;
+}
+.post-actions { display: flex; gap: 16px; }
+.post-action {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; color: var(--text-dim);
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.post-action:hover { color: var(--gold); }
+
+.new-post {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 20px;
+}
+.new-post textarea {
+  width: 100%;
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  resize: none;
+  height: 90px;
+  margin-bottom: 12px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.new-post textarea:focus { border-color: var(--gold); }
+.new-post textarea::placeholder { color: var(--text-dim); }
+.post-submit {
+  background: var(--gold);
+  color: var(--dark);
+  border: none;
+  padding: 10px 22px;
+  border-radius: 20px;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+  float: right;
+}
+.post-submit:hover { background: var(--gold-light); }
+
+.sidebar-widget {
+  background: var(--dark2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  margin-bottom: 16px;
+}
+.widget-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 15px; margin-bottom: 16px; }
+.online-item { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.online-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 6px var(--green); flex-shrink: 0; }
+.online-name { font-size: 13px; }
+.online-status { font-size: 11px; color: var(--text-dim); }
+.challenge-pill {
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.challenge-pill:hover { border-color: var(--gold); }
+.challenge-title { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+.challenge-sub { font-size: 11px; color: var(--text-dim); }
+.challenge-reward { font-size: 12px; color: var(--gold); font-weight: 600; margin-top: 6px; }
+
+/* ── TOAST ── */
+.toast {
+  position: fixed;
+  bottom: 30px; right: 30px;
+  background: var(--dark3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 14px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 1000;
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast-icon { font-size: 20px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .shell { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .stats-row, .levels-row { grid-template-columns: repeat(2, 1fr); }
+  .two-col, .community-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="logo">
+      <div class="logo-mark">English Hub<span>by EduHub</span></div>
+    </div>
+    <nav class="nav">
+      <div class="nav-item active" onclick="showSection('home')">
+        <span class="nav-icon">🏠</span> Accueil
+      </div>
+      <div class="nav-item" onclick="showSection('quiz')">
+        <span class="nav-icon">⚡</span> Quiz
+        <span class="nav-badge">5</span>
+      </div>
+      <div class="nav-item" onclick="showSection('duels')">
+        <span class="nav-icon">⚔️</span> Duels
+        <span class="nav-badge">2</span>
+      </div>
+      <div class="nav-item" onclick="showSection('community')">
+        <span class="nav-icon">💬</span> Communauté
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-card">
+        <div class="avatar">K</div>
+        <div>
+          <div class="user-name">Koffi A.</div>
+          <div class="user-level">Niveau C — Professional</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="topbar">
+      <div>
+        <div class="page-title" id="page-title">Tableau de bord</div>
+        <div class="page-sub" id="page-sub">Bienvenue, Koffi 👋</div>
+      </div>
+      <div class="topbar-right">
+        <div class="streak-pill">
+          <span class="streak-fire">🔥</span>
+          <span class="streak-count">7</span>
+          <span style="color:var(--text-dim);font-weight:400"> jours</span>
+        </div>
+        <div class="xp-pill">
+          ⭐ <span id="xp-display">1 240</span> XP
+        </div>
+      </div>
+    </div>
+
+    <div class="content">
+
+      <!-- HOME -->
+      <section class="section active" id="sec-home">
+        <div class="hero">
+          <div class="hero-text">
+            <h2>Continue ton élan —<br><em>7 jours de suite !</em></h2>
+            <p>Tu es à 60 XP du niveau D — Afro-Royal. Un quiz suffit pour y arriver aujourd'hui.</p>
+          </div>
+          <button class="hero-cta" onclick="showSection('quiz')">Faire un quiz →</button>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-label">Quiz complétés</div>
+            <div class="stat-value">34</div>
+            <div class="stat-unit">cette semaine</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Taux de réussite</div>
+            <div class="stat-value">78<span style="font-size:18px">%</span></div>
+            <div class="stat-unit">moyenne globale</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Duels gagnés</div>
+            <div class="stat-value">12</div>
+            <div class="stat-unit">sur 15 joués</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">Classement</div>
+            <div class="stat-value">#4</div>
+            <div class="stat-unit">dans ta promo</div>
+          </div>
+        </div>
+
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:14px;">Progression par niveau</div>
+        <div class="levels-row">
+          <div class="level-card">
+            <div class="level-tag">A–B</div>
+            <div class="level-name">Standard</div>
+            <div class="level-bar"><div class="level-fill" style="width:100%"></div></div>
+            <div class="level-pct">Complété ✓</div>
+          </div>
+          <div class="level-card current">
+            <div class="level-tag">C</div>
+            <div class="level-name">Professional</div>
+            <div class="level-bar"><div class="level-fill" style="width:72%"></div></div>
+            <div class="level-pct">72% — En cours</div>
+          </div>
+          <div class="level-card locked">
+            <div class="lock-icon">🔒</div>
+            <div class="level-tag">D</div>
+            <div class="level-name">Afro-Royal</div>
+            <div class="level-bar"><div class="level-fill" style="width:0%"></div></div>
+            <div class="level-pct">Débloque à 1 300 XP</div>
+          </div>
+          <div class="level-card locked">
+            <div class="lock-icon">🔒</div>
+            <div class="level-tag">PRO</div>
+            <div class="level-name">Certified</div>
+            <div class="level-bar"><div class="level-fill" style="width:0%"></div></div>
+            <div class="level-pct">Finir D d'abord</div>
+          </div>
+        </div>
+
+        <div class="two-col">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Activité récente</div>
+              <div class="card-action">Voir tout</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot">⚡</div>
+              <div class="activity-text">
+                <div class="activity-main">Quiz — Business Emails</div>
+                <div class="activity-sub">Il y a 2h · Niveau C</div>
+              </div>
+              <div class="activity-score">+80 XP</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot">⚔️</div>
+              <div class="activity-text">
+                <div class="activity-main">Duel gagné vs Ama K.</div>
+                <div class="activity-sub">Hier · Negotiations</div>
+              </div>
+              <div class="activity-score">+120 XP</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot">📖</div>
+              <div class="activity-text">
+                <div class="activity-main">Quiz — Meeting Vocab</div>
+                <div class="activity-sub">Hier · Niveau C</div>
+              </div>
+              <div class="activity-score">+60 XP</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-dot">🔥</div>
+              <div class="activity-text">
+                <div class="activity-main">Streak — 7 jours !</div>
+                <div class="activity-sub">Bonus de régularité</div>
+              </div>
+              <div class="activity-score">+50 XP</div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Classement — Cette semaine</div>
+              <div class="card-action" onclick="showSection('duels')">Défier →</div>
+            </div>
+            <div class="lb-item">
+              <div class="lb-rank gold">1</div>
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#FFD700,#FFA500)">M</div>
+              <div class="lb-name">Mensah T.</div>
+              <div class="lb-xp">2 180 XP</div>
+            </div>
+            <div class="lb-item">
+              <div class="lb-rank silver">2</div>
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#C0C0C0,#A0A0A0)">A</div>
+              <div class="lb-name">Ama K.</div>
+              <div class="lb-xp">1 890 XP</div>
+            </div>
+            <div class="lb-item">
+              <div class="lb-rank bronze">3</div>
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#CD7F32,#A0522D)">S</div>
+              <div class="lb-name">Samuel D.</div>
+              <div class="lb-xp">1 540 XP</div>
+            </div>
+            <div class="lb-item me">
+              <div class="lb-rank" style="color:var(--gold)">4</div>
+              <div class="lb-avatar" style="background:linear-gradient(135deg,var(--gold),var(--gold-light))">K</div>
+              <div class="lb-name">Koffi A.</div>
+              <div class="lb-xp" style="color:var(--gold)">1 240 XP</div>
+            </div>
+            <div class="lb-item">
+              <div class="lb-rank">5</div>
+              <div class="lb-avatar" style="background:linear-gradient(135deg,#6C63FF,#4CAF7A)">M</div>
+              <div class="lb-name">Merveille P.</div>
+              <div class="lb-xp">1 100 XP</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- QUIZ -->
+      <section class="section" id="sec-quiz">
+        <div class="quiz-wrap">
+          <div id="quiz-game">
+            <div class="quiz-header">
+              <h2>⚡ Quiz — Niveau C</h2>
+              <p>Business English · Professional</p>
+            </div>
+            <div class="quiz-progress-wrap">
+              <div class="quiz-progress-info">
+                <span id="q-counter">Question 1 / 5</span>
+                <span id="q-score-label">Score : 0</span>
+              </div>
+              <div class="quiz-bar">
+                <div class="quiz-fill" id="quiz-fill" style="width:20%"></div>
+              </div>
+            </div>
+            <div class="question-card">
+              <div class="q-level" id="q-level">Niveau C — Professional</div>
+              <div class="q-text" id="q-text">Loading...</div>
+              <div class="q-context" id="q-context"></div>
+            </div>
+            <div class="options" id="options"></div>
+            <div class="feedback" id="feedback">
+              <div class="feedback-icon" id="fb-icon"></div>
+              <div id="fb-text"></div>
+            </div>
+            <br>
+            <button class="quiz-btn primary" id="next-btn" onclick="nextQuestion()" disabled>Suivant →</button>
+          </div>
+
+          <div class="question-card result-card" id="quiz-result">
+            <div class="result-emoji" id="result-emoji">🎉</div>
+            <div class="result-score" id="result-score">4/5</div>
+            <div class="result-label">bonnes réponses</div>
+            <div class="result-xp" id="result-xp">+80 XP gagnés !</div>
+            <br>
+            <button class="quiz-btn primary" onclick="restartQuiz()" style="max-width:280px;margin:0 auto 12px;display:block">Rejouer</button>
+            <button class="quiz-btn" onclick="showSection('duels')" style="max-width:280px;margin:0 auto;display:block;background:var(--dark3);border:1px solid var(--border)">Défier quelqu'un ⚔️</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- DUELS -->
+      <section class="section" id="sec-duels">
+        <div class="duels-header">
+          <h2>⚔️ Duels</h2>
+          <p>Défie d'autres apprenants et prouve ton niveau</p>
+        </div>
+
+        <div class="duel-card">
+          <div class="duel-players">
+            <div class="duel-player">
+              <div class="duel-avatar" style="background:linear-gradient(135deg,var(--gold),var(--gold-light))">K</div>
+              <div class="duel-pname">Koffi A.</div>
+              <div class="duel-plevel">Niv. C</div>
+            </div>
+            <div class="duel-vs">VS</div>
+            <div class="duel-player">
+              <div class="duel-avatar" style="background:linear-gradient(135deg,#C0C0C0,#A0A0A0)">A</div>
+              <div class="duel-pname">Ama K.</div>
+              <div class="duel-plevel">Niv. C</div>
+            </div>
+          </div>
+          <div class="duel-info">
+            <div class="duel-topic">📧 Business Emails</div>
+            <div class="duel-meta">10 questions · 5 min · +150 XP</div>
+          </div>
+          <div class="duel-status pending">En attente</div>
+          <button class="duel-btn accept" onclick="showToast('✅','Duel accepté ! Bonne chance !')">Accepter</button>
+        </div>
+
+        <div class="duel-card">
+          <div class="duel-players">
+            <div class="duel-player">
+              <div class="duel-avatar" style="background:linear-gradient(135deg,var(--gold),var(--gold-light))">K</div>
+              <div class="duel-pname">Koffi A.</div>
+              <div class="duel-plevel">Niv. C</div>
+            </div>
+            <div class="duel-vs">VS</div>
+            <div class="duel-player">
+              <div class="duel-avatar" style="background:linear-gradient(135deg,#CD7F32,#A0522D)">S</div>
+              <div class="duel-pname">Samuel D.</div>
+              <div class="duel-plevel">Niv. B</div>
+            </div>
+          </div>
+          <div class="duel-info">
+            <div class="duel-topic">🤝 Negotiations</div>
+            <div class="duel-meta">8 questions · 4 min · +120 XP</div>
+          </div>
+          <div class="duel-status active">En cours</div>
+          <button class="duel-btn challenge" onclick="showToast('⚔️','Duel en cours — concentre-toi !')">Continuer</button>
+        </div>
+
+        <div class="duel-card">
+          <div class="duel-players">
+            <div class="duel-player">
+              <div class="duel-avatar" style="background:linear-gradient(135deg,var(--gold),var(--gold-light))">K</div>
+              <div class="duel-pname">Koffi A.</div>
+              <div class="duel-plevel">Niv. C</div>
+            </div>
+            <div class="duel-vs">VS</div>
+            <div class="duel-player">
+              <div class="duel-avatar" style="background:linear-gradient(135deg,#FFD700,#FFA500)">M</div>
+              <div class="duel-pname">Mensah T.</div>
+              <div class="duel-plevel">Niv. D</div>
+            </div>
+          </div>
+          <div class="duel-info">
+            <div class="duel-topic">📊 Presentations</div>
+            <div class="duel-meta">Victoire 9/10 · +120 XP</div>
+          </div>
+          <div class="duel-status won">Gagné 🏆</div>
+          <button class="duel-btn challenge" onclick="showToast('⚔️','Défi envoyé à Mensah T. !')">Revanche</button>
+        </div>
+
+        <div style="margin-top:24px;">
+          <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:14px;">Défier quelqu'un</div>
+          <div class="duel-card" style="cursor:pointer;" onclick="showToast('⚔️','Défi envoyé à Merveille P. !')">
+            <div class="duel-players">
+              <div class="duel-player">
+                <div class="duel-avatar" style="background:linear-gradient(135deg,#6C63FF,#4CAF7A)">M</div>
+                <div class="duel-pname">Merveille P.</div>
+                <div class="duel-plevel">Niv. C</div>
+              </div>
+            </div>
+            <div class="duel-info">
+              <div class="duel-topic">Merveille P. — Niv. C</div>
+              <div class="duel-meta">1 100 XP · 80% winrate</div>
+            </div>
+            <button class="duel-btn challenge">Défier ⚔️</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMMUNITY -->
+      <section class="section" id="sec-community">
+        <div class="community-grid">
+          <div>
+            <div class="new-post">
+              <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;margin-bottom:14px;">💬 Partage avec la communauté</div>
+              <textarea placeholder="Pose une question, partage une astuce, ou propose un partenaire de pratique orale..."></textarea>
+              <div style="overflow:hidden;">
+                <button class="post-submit" onclick="showToast('✅','Post publié !')">Publier</button>
+              </div>
+            </div>
+
+            <div class="post-card">
+              <div class="post-head">
+                <div class="post-avatar" style="background:linear-gradient(135deg,#C0C0C0,#A0A0A0)">A</div>
+                <div class="post-meta">
+                  <div class="post-author">Ama K. <span class="post-level">· Niv. C</span></div>
+                  <div class="post-time">Il y a 1h</div>
+                </div>
+              </div>
+              <div class="post-body">Est-ce que quelqu'un peut m'aider avec la différence entre <em>"I look forward to hearing from you"</em> et <em>"I'm looking forward to hearing from you"</em> dans un email pro ? 🙏</div>
+              <span class="post-tag">Emails</span>
+              <span class="post-tag">Grammaire</span>
+              <div class="post-actions">
+                <div class="post-action" onclick="showToast('❤️','J\'aime ajouté !')">❤️ 8</div>
+                <div class="post-action">💬 3 réponses</div>
+                <div class="post-action" onclick="showToast('🤝','Proposition de pratique envoyée !')">🤝 Pratiquer ensemble</div>
+              </div>
+            </div>
+
+            <div class="post-card">
+              <div class="post-head">
+                <div class="post-avatar" style="background:linear-gradient(135deg,#CD7F32,#A0522D)">S</div>
+                <div class="post-meta">
+                  <div class="post-author">Samuel D. <span class="post-level">· Niv. B</span></div>
+                  <div class="post-time">Il y a 3h</div>
+                </div>
+              </div>
+              <div class="post-body">Astuce du jour 💡 : Pour ne plus confondre <em>make</em> et <em>do</em> en business — retiens que <em>make</em> = créer quelque chose (make a decision, make a deal) et <em>do</em> = effectuer une action (do business, do research). Ça m'a sauvé lors d'une présentation !</div>
+              <span class="post-tag">Vocabulaire</span>
+              <span class="post-tag">Astuce</span>
+              <div class="post-actions">
+                <div class="post-action" onclick="showToast('❤️','J\'aime ajouté !')">❤️ 24</div>
+                <div class="post-action">💬 7 réponses</div>
+                <div class="post-action" onclick="showToast('🤝','Proposition de pratique envoyée !')">🤝 Pratiquer ensemble</div>
+              </div>
+            </div>
+
+            <div class="post-card">
+              <div class="post-head">
+                <div class="post-avatar" style="background:linear-gradient(135deg,#6C63FF,#4CAF7A)">M</div>
+                <div class="post-meta">
+                  <div class="post-author">Merveille P. <span class="post-level">· Niv. C</span></div>
+                  <div class="post-time">Hier</div>
+                </div>
+              </div>
+              <div class="post-body">Quelqu'un veut faire une session de pratique orale ce soir ? On peut simuler un entretien d'embauche en anglais via WhatsApp vocal. Je cherche 1-2 personnes motivées. 🎙️</div>
+              <span class="post-tag">Pratique orale</span>
+              <span class="post-tag">Entretien</span>
+              <div class="post-actions">
+                <div class="post-action" onclick="showToast('❤️','J\'aime ajouté !')">❤️ 5</div>
+                <div class="post-action">💬 4 réponses</div>
+                <div class="post-action" onclick="showToast('🤝','Tu rejoins la session !')">🤝 Je participe</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="sidebar-widget">
+              <div class="widget-title">🟢 En ligne maintenant</div>
+              <div class="online-item">
+                <div class="online-dot"></div>
+                <div>
+                  <div class="online-name">Ama K.</div>
+                  <div class="online-status">Quiz — Niveau C</div>
+                </div>
+              </div>
+              <div class="online-item">
+                <div class="online-dot"></div>
+                <div>
+                  <div class="online-name">Mensah T.</div>
+                  <div class="online-status">Duel en cours</div>
+                </div>
+              </div>
+              <div class="online-item">
+                <div class="online-dot"></div>
+                <div>
+                  <div class="online-name">Samuel D.</div>
+                  <div class="online-status">Communauté</div>
+                </div>
+              </div>
+              <div style="margin-top:6px;font-size:12px;color:var(--text-dim)">+ 12 autres membres</div>
+            </div>
+
+            <div class="sidebar-widget">
+              <div class="widget-title">🏆 Défis de la semaine</div>
+              <div class="challenge-pill">
+                <div class="challenge-title">⚡ Quiz Marathon</div>
+                <div class="challenge-sub">Complète 10 quiz cette semaine</div>
+                <div class="challenge-reward">+200 XP · Badge Bronze</div>
+              </div>
+              <div class="challenge-pill">
+                <div class="challenge-title">⚔️ Imbattable</div>
+                <div class="challenge-sub">Gagne 3 duels consécutifs</div>
+                <div class="challenge-reward">+300 XP · Badge Argent</div>
+              </div>
+              <div class="challenge-pill">
+                <div class="challenge-title">💬 Mentor</div>
+                <div class="challenge-sub">Réponds à 5 questions dans la communauté</div>
+                <div class="challenge-reward">+150 XP · Badge Or</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon" id="toast-icon"></span>
+  <span id="toast-msg"></span>
+</div>
+
+<script>
+// ── NAVIGATION ──
+const pages = {
+  home: { title: 'Tableau de bord', sub: 'Bienvenue, Koffi 👋' },
+  quiz: { title: 'Quiz', sub: 'Teste tes connaissances' },
+  duels: { title: 'Duels', sub: 'Affronte la communauté' },
+  community: { title: 'Communauté', sub: 'Échange et progresse ensemble' },
+};
+
+function showSection(id) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('sec-' + id).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => {
+    if (n.textContent.toLowerCase().includes(id === 'home' ? 'accueil' : id === 'quiz' ? 'quiz' : id === 'duels' ? 'duel' : 'communauté')) {
+      n.classList.add('active');
+    }
+  });
+  document.getElementById('page-title').textContent = pages[id].title;
+  document.getElementById('page-sub').textContent = pages[id].sub;
+  if (id === 'quiz') initQuiz();
+}
+
+// ── TOAST ──
+let toastTimer;
+function showToast(icon, msg) {
+  const t = document.getElementById('toast');
+  document.getElementById('toast-icon').textContent = icon;
+  document.getElementById('toast-msg').textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ── QUIZ ──
+const questions = [
+  {
+    level: "Niveau C — Professional",
+    text: "Complete the email phrase: \"I am writing ___ inquire about the status of my order.\"",
+    context: "Situation : Tu écris un email de suivi client.",
+    options: ["to", "for", "about", "in order"],
+    correct: 0,
+    explanation: "✅ Correct ! \"Writing to\" + verb exprime l'intention en anglais professionnel. Ex : \"I'm writing to confirm our meeting.\""
+  },
+  {
+    level: "Niveau C — Professional",
+    text: "In a meeting, your colleague says: \"Let's table this for now.\" What does it mean?",
+    context: "Situation : Tu es en réunion d'équipe avec un partenaire anglophone.",
+    options: ["Discutons-en maintenant", "Reportons cela à plus tard", "Mettons-le sur la table", "Annulons la réunion"],
+    correct: 1,
+    explanation: "✅ Exact ! En anglais britannique/africain, \"table\" = reporter. Attention : en anglais américain, \"table\" = discuter maintenant. Toujours vérifier le contexte !"
+  },
+  {
+    level: "Niveau C — Professional",
+    text: "Which phrase is MOST professional for ending a negotiation email?",
+    context: "Situation : Tu conclus une négociation par email.",
+    options: [
+      "I hope we can work this out.",
+      "I look forward to reaching a mutually beneficial agreement.",
+      "Please get back to me ASAP.",
+      "Let me know what you think."
+    ],
+    correct: 1,
+    explanation: "✅ Parfait ! \"Mutually beneficial\" montre que tu penses aux deux parties — c'est exactement le ton qu'un interlocuteur business anglophone attend."
+  },
+  {
+    level: "Niveau C — Professional",
+    text: "\"Could you please elaborate on that point?\" — This phrase is used to...",
+    context: "Situation : Tu es en présentation et tu n'as pas tout compris.",
+    options: [
+      "Accepter une proposition",
+      "Demander plus de détails",
+      "Interrompre poliment",
+      "Exprimer un désaccord"
+    ],
+    correct: 1,
+    explanation: "✅ Bien joué ! \"Elaborate\" = développer, donner plus de détails. Très utile en réunion pour montrer ton engagement sans paraître perdu."
+  },
+  {
+    level: "Niveau C — Professional",
+    text: "Fill in the blank: \"We'd like to ___ a partnership with your company.\"",
+    context: "Situation : Tu proposes une collaboration à un client potentiel.",
+    options: ["make", "do", "establish", "build up"],
+    correct: 2,
+    explanation: "✅ Excellent ! \"Establish a partnership\" est la collocation business la plus naturelle. \"Make\" ou \"do\" seraient trop informels dans ce contexte professionnel."
+  }
+];
+
+let currentQ = 0;
+let score = 0;
+let answered = false;
+let xp = 1240;
+
+function initQuiz() {
+  currentQ = 0;
+  score = 0;
+  answered = false;
+  document.getElementById('quiz-game').style.display = 'block';
+  document.getElementById('quiz-result').classList.remove('show');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = questions[currentQ];
+  document.getElementById('q-counter').textContent = `Question ${currentQ + 1} / ${questions.length}`;
+  document.getElementById('q-score-label').textContent = `Score : ${score}`;
+  document.getElementById('quiz-fill').style.width = `${((currentQ + 1) / questions.length) * 100}%`;
+  document.getElementById('q-level').textContent = q.level;
+  document.getElementById('q-text').textContent = q.text;
+  document.getElementById('q-context').textContent = q.context;
+
+  const opts = document.getElementById('options');
+  opts.innerHTML = '';
+  const letters = ['A', 'B', 'C', 'D'];
+  q.options.forEach((opt, i) => {
+    const el = document.createElement('div');
+    el.className = 'option';
+    el.innerHTML = `<span class="opt-letter">${letters[i]}</span> ${opt}`;
+    el.onclick = () => selectOption(i);
+    opts.appendChild(el);
+  });
+
+  const fb = document.getElementById('feedback');
+  fb.className = 'feedback';
+  fb.classList.remove('show');
+
+  const btn = document.getElementById('next-btn');
+  btn.disabled = true;
+  btn.textContent = currentQ < questions.length - 1 ? 'Suivant →' : 'Voir mes résultats 🎯';
+  answered = false;
+}
+
+function selectOption(idx) {
+  if (answered) return;
+  answered = true;
+  const q = questions[currentQ];
+  const opts = document.querySelectorAll('.option');
+
+  opts.forEach(o => o.classList.add('locked'));
+  opts[idx].classList.add(idx === q.correct ? 'correct' : 'wrong');
+  if (idx !== q.correct) opts[q.correct].classList.add('correct');
+
+  const fb = document.getElementById('feedback');
+  const isCorrect = idx === q.correct;
+  if (isCorrect) score++;
+
+  fb.className = `feedback ${isCorrect ? 'correct' : 'wrong'} show`;
+  document.getElementById('fb-icon').textContent = isCorrect ? '✅' : '❌';
+  document.getElementById('fb-text').innerHTML = `<strong>${isCorrect ? 'Bonne réponse !' : 'Pas tout à fait...'}</strong><br>${q.explanation}`;
+
+  document.getElementById('next-btn').disabled = false;
+}
+
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= questions.length) {
+    showResult();
+  } else {
+    renderQuestion();
+  }
+}
+
+function showResult() {
+  document.getElementById('quiz-game').style.display = 'none';
+  const result = document.getElementById('quiz-result');
+  result.classList.add('show');
+
+  const pct = score / questions.length;
+  const emoji = pct === 1 ? '🏆' : pct >= 0.8 ? '🎉' : pct >= 0.6 ? '👍' : '💪';
+  const earned = Math.round(pct * 100);
+  xp += earned;
+
+  document.getElementById('result-emoji').textContent = emoji;
+  document.getElementById('result-score').textContent = `${score}/${questions.length}`;
+  document.getElementById('result-xp').textContent = `+${earned} XP gagnés !`;
+  document.getElementById('xp-display').textContent = xp.toLocaleString();
+
+  showToast('🏆', `Quiz terminé — +${earned} XP !`);
+}
+
+function restartQuiz() {
+  initQuiz();
+}
+
+// Init
+initQuiz();
+</script>
+</body>
+</html>
